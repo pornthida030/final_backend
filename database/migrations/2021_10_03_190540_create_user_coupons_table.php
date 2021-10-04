@@ -14,7 +14,14 @@ class CreateUserCouponsTable extends Migration
     public function up()
     {
         Schema::create('user_coupons', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->foreignIdFor(\App\Models\User::class); // user_id
+
+            $table->string('type');
+            $table->enum('coupon_status', ["unuse", "used"])->default("unuse");
+        
+            // coupon_owner (id) 
+            // review
             $table->timestamps();
         });
     }

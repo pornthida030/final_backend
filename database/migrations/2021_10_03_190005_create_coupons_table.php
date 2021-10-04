@@ -14,7 +14,10 @@ class CreateCouponsTable extends Migration
     public function up()
     {
         Schema::create('coupons', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->foreignIdFor(\App\Models\Service::class); // service_id
+            $table->string('name');
+            $table->float('price');
             $table->timestamps();
         });
     }
