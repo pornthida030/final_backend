@@ -23,6 +23,11 @@ class User extends Authenticatable
         'password',
     ];
 
+    public function user_coupons(){
+        return $this->hasMany(UserCoupon::class);
+    }
+
+
     /**
      * The attributes that should be hidden for serialization.
      *
