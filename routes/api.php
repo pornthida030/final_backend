@@ -23,9 +23,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('user/register',[App\Http\Controllers\UserController::class, 'register']);
 
 // Type Controller
-Route::get('/type',[App\Http\Controllers\TypeController::class, 'getAllTypes']);
-Route::post('/type',[App\Http\Controllers\TypeController::class, 'createType']);
 
-Route::get('/type/{id}',[App\Http\Controllers\TypeController::class, 'getTypeAndService']);
-Route::put('/type/{id}',[App\Http\Controllers\TypeController::class, 'update']);
-Route::delete('/type/{id}',[App\Http\Controllers\TypeController::class, 'destroy']);
+Route::prefix('type')->group(function() {
+    Route::get('/',[App\Http\Controllers\TypeController::class, 'getAllTypes']);
+    Route::post('/',[App\Http\Controllers\TypeController::class, 'createType']);
+    Route::get('/{id}',[App\Http\Controllers\TypeController::class, 'getTypeAndService']);
+    Route::put('/{id}',[App\Http\Controllers\TypeController::class, 'update']);
+    Route::delete('/{id}',[App\Http\Controllers\TypeController::class, 'destroy']);
+});
