@@ -31,3 +31,11 @@ Route::prefix('type')->group(function() {
     Route::put('/{id}',[App\Http\Controllers\TypeController::class, 'update']);
     Route::delete('/{id}',[App\Http\Controllers\TypeController::class, 'destroy']);
 });
+
+// Coupon Controller
+
+Route::prefix('coupon')->group(function(){
+    Route::post('/', [App\Http\Controllers\CouponController::class, 'createCoupon']);
+    Route::put('/{id}',[App\Http\Controllers\CouponController::class, 'update']);
+    Route::delete('/{id}',[App\Http\Controllers\CouponController::class, 'destroy']);
+});

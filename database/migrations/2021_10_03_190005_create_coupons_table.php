@@ -18,6 +18,7 @@ class CreateCouponsTable extends Migration
             $table->foreignIdFor(\App\Models\Service::class); // service_id
             $table->string('name');
             $table->float('price');
+            $table->integer('time');
             $table->timestamps();
         });
     }
