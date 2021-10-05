@@ -18,12 +18,23 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// test
-// Route::post('user/login',[App\Http\Controllers\UserController::class, 'index']);
-Route::post('user/register',[App\Http\Controllers\UserController::class, 'register']);
+// User Controller
+Route::middleware(['jwt.auth'])->prefix('user')->group(function() {
+    Route::get('/me',[App\Http\Controllers\UserController::class, 'getMe']);
+    Route::get('/',[App\Http\Controllers\UserController::class, 'getAllUsers']);
+    Route::get('/{id}',[App\Http\Controllers\UserController::class, 'getUser']);
+    Route::put('/me',[App\Http\Controllers\UserController::class, 'updateMe']);
+    Route::put('/{id}',[App\Http\Controllers\UserController::class, 'updateUser']);
+    Route::delete('/{id}',[App\Http\Controllers\UserController::class, 'destroy']);
+});
+
+// Authentication Controller
+Route::prefix('auth')->group(function() {
+    Route::post('/login',[App\Http\Controllers\UserController::class, 'login']);
+    Route::post('/register',[App\Http\Controllers\UserController::class, 'register']);
+});
 
 // Type Controller
-
 Route::prefix('type')->group(function() {
     Route::get('/',[App\Http\Controllers\TypeController::class, 'getAllTypes']);
     Route::post('/',[App\Http\Controllers\TypeController::class, 'createType']);
@@ -33,7 +44,6 @@ Route::prefix('type')->group(function() {
 });
 
 // Coupon Controller
-
 Route::prefix('coupon')->group(function(){
     Route::post('/', [App\Http\Controllers\CouponController::class, 'createCoupon']);
     Route::put('/{id}',[App\Http\Controllers\CouponController::class, 'update']);
