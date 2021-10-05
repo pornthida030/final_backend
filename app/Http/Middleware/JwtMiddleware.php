@@ -9,7 +9,7 @@ use Firebase\JWT\JWT;
 
 class JwtMiddleware
 {
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, ...$roles)
     {
       $token = $request->header('Authorization');
 
@@ -31,8 +31,14 @@ class JwtMiddleware
             ], 400);
         }
         $user = User::find($credentials->sub);
-        // Now let's put the user in the request class so that you can grab it from there
-        $request->auth = $user;
-        return $next($request);
+
+        if($user && in_array($user->role,$roles)){
+            $request->auth = $user;
+            return $next($request);
+        }
+
+        return response()->json([
+            'error' => 'You dont have permission.',
+        ], 401);
     }
 }

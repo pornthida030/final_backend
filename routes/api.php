@@ -14,46 +14,55 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-// User Controller
-Route::middleware(['jwt.auth'])->prefix('user')->group(function() {
-    Route::get('/me',[App\Http\Controllers\UserController::class, 'getMe']);
-    Route::get('/',[App\Http\Controllers\UserController::class, 'getAllUsers']);
-    Route::get('/{id}',[App\Http\Controllers\UserController::class, 'getUser']);
-    Route::put('/me',[App\Http\Controllers\UserController::class, 'updateMe']);
-    Route::put('/{id}',[App\Http\Controllers\UserController::class, 'updateUser']);
-    Route::delete('/{id}',[App\Http\Controllers\UserController::class, 'destroy']);
-});
-
 // Authentication Controller
 Route::prefix('auth')->group(function() {
     Route::post('/login',[App\Http\Controllers\UserController::class, 'login']);
     Route::post('/register',[App\Http\Controllers\UserController::class, 'register']);
 });
 
-// Type Controller
-Route::prefix('type')->group(function() {
-    Route::get('/',[App\Http\Controllers\TypeController::class, 'getAllTypes']);
+// User Controller
+Route::middleware(['jwt.auth:ADMIN,USER'])->prefix('user')->group(function() {
+    Route::get('/me',[App\Http\Controllers\UserController::class, 'getMe']);
+    Route::put('/me',[App\Http\Controllers\UserController::class, 'updateMe']);
+});
+
+// User Controller for Admin
+Route::middleware(['jwt.auth:ADMIN'])->prefix('user')->group(function() {
+    Route::get('/',[App\Http\Controllers\UserController::class, 'getAllUsers']);
+    Route::get('/{id}',[App\Http\Controllers\UserController::class, 'getUser']);
+    Route::put('/{id}',[App\Http\Controllers\UserController::class, 'updateUser']);
+    Route::delete('/{id}',[App\Http\Controllers\UserController::class, 'destroy']);
+});
+
+
+// Type Controller for Admin
+Route::middleware(['jwt.auth:ADMIN'])->prefix('type')->group(function() {
     Route::post('/',[App\Http\Controllers\TypeController::class, 'createType']);
-    Route::get('/{id}',[App\Http\Controllers\TypeController::class, 'getTypeAndService']);
     Route::put('/{id}',[App\Http\Controllers\TypeController::class, 'update']);
     Route::delete('/{id}',[App\Http\Controllers\TypeController::class, 'destroy']);
 });
 
-// Coupon Controller
-Route::prefix('coupon')->group(function(){
+// Type Controller
+Route::prefix('type')->group(function() {
+    Route::get('/',[App\Http\Controllers\TypeController::class, 'getAllTypes']);
+    Route::get('/{id}',[App\Http\Controllers\TypeController::class, 'getTypeAndService']);
+});
+
+// Coupon Controller for Admin
+Route::middleware(['jwt.auth:ADMIN'])->prefix('coupon')->group(function(){
     Route::post('/', [App\Http\Controllers\CouponController::class, 'createCoupon']);
     Route::put('/{id}',[App\Http\Controllers\CouponController::class, 'update']);
     Route::delete('/{id}',[App\Http\Controllers\CouponController::class, 'destroy']);
 });
 
 // UserCoupon Controller
-Route::prefix('user_coupon')->group(function(){
+Route::middleware(['jwt.auth:ADMIN,USER'])->prefix('user_coupon')->group(function(){
     Route::get('/', [\App\Http\Controllers\UserCouponController::class, 'getUserCoupon']);
     Route::post('/', [App\Http\Controllers\UserCouponController::class, 'addUserCoupon']);
+});
+
+// UserCoupon Controller for Admin
+Route::middleware(['jwt.auth:ADMIN'])->prefix('user_coupon')->group(function(){
     Route::put('/',[App\Http\Controllers\UserCouponController::class, 'update']);
     Route::delete('/{id}',[App\Http\Controllers\UserCouponController::class, 'destroy']);
 });
@@ -62,6 +71,10 @@ Route::prefix('user_coupon')->group(function(){
 Route::prefix('service')->group(function() {
     Route::get('/',[App\Http\Controllers\ServiceController::class, 'getAllServices']);
     Route::get('/{id}',[App\Http\Controllers\ServiceController::class, 'getServiceAndCoupons']);
+});
+
+// Service Controller for Admin
+Route::middleware(['jwt.auth:ADMIN'])->prefix('service')->group(function() {
     Route::post('/',[App\Http\Controllers\ServiceController::class, 'createService']);
     Route::put('/{id}',[App\Http\Controllers\ServiceController::class, 'update']);
     Route::delete('/{id}',[App\Http\Controllers\ServiceController::class, 'destroy']);
