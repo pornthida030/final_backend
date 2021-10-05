@@ -19,9 +19,12 @@ class CreateUserCouponsTable extends Migration
 
             $table->string('type');
             $table->enum('coupon_status', ["unuse", "used"])->default("unuse");
-        
-            // coupon_owner (id) 
+            
+            // coupon_owner (id)
+            $table->foreignIdFor(\App\Models\Coupon::class);
+
             // review
+            $table->boolean('reviewed');
             $table->timestamps();
         });
     }

@@ -18,13 +18,17 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'id',
+        'username',
+        'name'
     ];
-
+    
     public function user_coupons(){
         return $this->hasMany(UserCoupon::class);
+    }
+
+    public function review(){
+        return $this->hasMany(Review::class);
     }
 
 
@@ -35,15 +39,5 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'remember_token',
-    ];
-
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
     ];
 }

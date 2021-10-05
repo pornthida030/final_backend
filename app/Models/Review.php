@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Review extends Model
 {
     use HasFactory;
+
+    public function coupon(){
+        $this->belongsTo(Coupon::class);
+    }
+
+    public function user(){
+        $this->belongsTo(User::class);
+    }
 }
