@@ -49,3 +49,11 @@ Route::prefix('coupon')->group(function(){
     Route::put('/{id}',[App\Http\Controllers\CouponController::class, 'update']);
     Route::delete('/{id}',[App\Http\Controllers\CouponController::class, 'destroy']);
 });
+
+// UserCoupon Controller
+Route::prefix('user_coupon')->group(function(){
+    Route::get('/', [\App\Http\Controllers\UserCouponController::class, 'getUserCoupon']);
+    Route::post('/', [App\Http\Controllers\UserCouponController::class, 'addUserCoupon']);
+    Route::put('/',[App\Http\Controllers\UserCouponController::class, 'update']);
+    Route::delete('/{id}',[App\Http\Controllers\UserCouponController::class, 'destroy']);
+});

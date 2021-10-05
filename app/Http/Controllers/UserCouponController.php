@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Coupon;
+use App\Models\User;
+use App\Models\UserCoupon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class UserCouponController extends Controller
 {
-        /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+
+    public function getUserCoupon() {
+//        $user_coupon = UserCoupon::get();
+        $user_coupon = UserCoupon::all();
+        return $user_coupon;
     }
 
     /**
@@ -21,54 +22,76 @@ class UserCouponController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function addUserCoupon(Request $request, $id, User $user)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'price' => 'required',
+            'time' => 'required',
+        ]);
+
+        $user_coupon = UserCoupon::findOrFail($id);
+        $user_coupon->coupon_owner = $user->name;
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+            return [
+                "status"=> "error",
+                "error" => $errors
+            ];
+        }
+        else {
+            $coupon = new Coupon();
+            $coupon->name = $request->name;
+            $coupon->price = $request->price;
+            $coupon->time = $request->time;
+
+            if ($coupon->save()){
+                return $user_coupon;
+            }
+            else {
+                return
+                    [
+                        "status"=> "error",
+                        "error" => "สร้างไม่ได้"
+                    ];
+            }
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+    public function update(Request $request, $id){
+        $user_coupon = UserCoupon::findOrFail($id);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+        $validator = Validator::make($request->all(), [
+            'type' => 'required',
+            'coupon_status' => 'required',
+            'reviewed' => 'required',
+        ]);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+        if ($validator->fails()) {
+            $errors = $validator->errors();
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+            return [
+                "status"=> "error",
+                "error" => $errors
+            ];
+        }
+        else {
+            $user_coupon->name = $request->type;
+            $user_coupon->price = $request->coupon_status;
+            $user_coupon->time = $request->reviewed;
+
+            if ($user_coupon->save()){
+                return $user_coupon;
+            }
+            else {
+                return
+                    [
+                        "status"=> "error",
+                        "error" => "แก้ไขไม่ได้"
+                    ];
+            }
+        }
     }
 
     /**
@@ -79,6 +102,16 @@ class UserCouponController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user_coupon = UserCoupon::findOrFail($id);
+        if ( $user_coupon->delete() ) {
+            return [
+                "status"=> "success"
+            ];
+        } else {
+            return [
+                "status"=> "error",
+                "error" => "ลบไม่ได้"
+            ];
+        }
     }
 }
