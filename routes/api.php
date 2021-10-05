@@ -57,3 +57,12 @@ Route::prefix('user_coupon')->group(function(){
     Route::put('/',[App\Http\Controllers\UserCouponController::class, 'update']);
     Route::delete('/{id}',[App\Http\Controllers\UserCouponController::class, 'destroy']);
 });
+
+// Service Controller
+Route::prefix('service')->group(function() {
+    Route::get('/',[App\Http\Controllers\ServiceController::class, 'getAllServices']);
+    Route::get('/{id}',[App\Http\Controllers\ServiceController::class, 'getServiceAndCoupons']);
+    Route::post('/',[App\Http\Controllers\ServiceController::class, 'createService']);
+    Route::put('/{id}',[App\Http\Controllers\ServiceController::class, 'update']);
+    Route::delete('/{id}',[App\Http\Controllers\ServiceController::class, 'destroy']);
+});

@@ -2,83 +2,104 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Service;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
 {
-        /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+
+    public function getAllServices(){
+        $service = Service::all();
+        return $service;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function getServiceAndCoupons($id){
+        $service = Service::find($id);
+        $service["coupons"] = $service->coupons;
+        return $service;
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+    public function createService(Request $request){
+        $validator = Validator::make($request->all(), [
+            'type_id' => 'required',
+            'name' => 'required',
+            'description' => 'required',
+            'service_image_url' => 'required'
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+        if ($validator->fails()) {
+            $errors = $validator->errors();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+            return [
+                "status"=> "error", 
+                "error" => $errors
+            ];
+        } else {
+            $service = new Service();
+            $service->type_id = $request->type_id;
+            $service->name = $request->name;
+            $service->description = $request->description;
+            $service->service_image_url = $request->service_image_url;
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+            if ($service->save()){
+                return $service;
+            }else {
+                return
+                [
+                    "status"=> "error", 
+                    "error" => "สร้างไม่ได้"
+                ];
+            }
+        }
     }
+            public function update(Request $request, $id){
+                $service = Service::findOrFail($id);
+                $validator = Validator::make($request->all(), [
+                    'name' => 'required',
+                    'description' => 'required',
+                    'service_image_url' => 'required'
+                ]);
+    
+                if ($validator->fails()) {
+                    $errors = $validator->errors();
+        
+                    return [
+                        "status"=> "error", 
+                        "error" => $errors
+                    ];
+                } else {
+                    $service->name = $request->name;
+                    $service->description = $request->description;
+                    $service->service_image_url = $request->service_image_url;
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+                    if ($service->save()){
+                        return $service;
+                    }else {
+                        return
+                        [
+                            "status"=> "error", 
+                            "error" => "แก้ไขไม่ได้"
+                        ];
+                    }
+                }   
+            }
+    
+            public function destroy(Request $request, $id)
+            {
+                $service = Service::findOrFail($id);
+                if ( $service->delete() ) {
+                    return [ 
+                        "status"=> "success" 
+                    ];
+                } else {
+                    return [ 
+                        "status"=> "error", 
+                        "error" => "ลบไม่ได้"
+                    ];
+                }
+            }
+
+
+
 }
