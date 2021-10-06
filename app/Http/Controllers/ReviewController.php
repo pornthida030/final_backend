@@ -2,83 +2,49 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use App\Models\Review;
+
 
 class ReviewController extends Controller
 {
-        /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function getAllReview()
     {
-        //
+        $reveiws= Review::all();
+        return $reveiws;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function createReview(Request $request,$id)
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        
+        $validator = Validator::make($request->all(),
+        [
+            'score'=>'required',
+            'review_detail'=>'required'
+            
+        ]);
+        if($validator->fails()){
+            $error = $validator->errors();
+            return [
+                "status"=>"error",
+                "error"=>$error
+            ];
+        }else{
+            $reveiw = new Review();
+            $reveiw->score=$request->score;
+            $reveiw->review_detail=$request->review_detail;
+            $reveiw->coupon_id=$id;
+            $reveiw->user_id=$request->user_id;
+            if($reveiw->save()){
+                return $reveiw;
+            }
+            else{
+                return [
+                    "status"=>"error",
+                    "error"=>"สร้างไม่ได้"
+                ];
+            }
+        }
     }
 }

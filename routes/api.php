@@ -79,3 +79,9 @@ Route::middleware(['jwt.auth:ADMIN'])->prefix('service')->group(function() {
     Route::put('/{id}',[App\Http\Controllers\ServiceController::class, 'update']);
     Route::delete('/{id}',[App\Http\Controllers\ServiceController::class, 'destroy']);
 });
+
+Route::prefix('review')->group(function(){
+    Route::post('/{id}',[App\Http\Controllers\ReviewController::class,'createReview']);
+    Route::get('/',[App\Http\Controllers\ReviewController::class,'getAllReview']);
+    
+});
