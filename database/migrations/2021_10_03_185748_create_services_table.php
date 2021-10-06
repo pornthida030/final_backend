@@ -18,7 +18,7 @@ class CreateServicesTable extends Migration
             $table->foreignIdFor(\App\Models\Type::class); // type_id
             $table->string('name');
             $table->longText('description');
-            $table->string('service_image_url');
+            $table->longText('service_image_url');
             $table->timestamps();
         });
     }

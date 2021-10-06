@@ -17,7 +17,6 @@ class CreateUserCouponsTable extends Migration
             $table->bigIncrements('id');
             $table->foreignIdFor(\App\Models\User::class); // user_id
 
-            $table->string('type');
             $table->enum('coupon_status', ["unuse", "used"])->default("unuse");
             
             // coupon_owner (id)
