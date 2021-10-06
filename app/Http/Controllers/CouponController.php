@@ -97,4 +97,13 @@ class CouponController extends Controller
             ];
         }
     }
+
+    // random function for Home page
+    public function random()
+    {
+        $coupon = Coupon::all()->random(4);    
+        return $coupon;
+        // return $coupon;
+
+    }
 }

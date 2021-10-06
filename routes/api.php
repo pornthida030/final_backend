@@ -55,6 +55,12 @@ Route::middleware(['jwt.auth:ADMIN'])->prefix('coupon')->group(function(){
     Route::delete('/{id}',[App\Http\Controllers\CouponController::class, 'destroy']);
 });
 
+// Coupon Controller
+Route::prefix('coupon')->group(function(){
+    Route::get('/random', [App\Http\Controllers\CouponController::class, 'random']);
+    
+});
+
 // UserCoupon Controller
 Route::middleware(['jwt.auth:ADMIN,USER'])->prefix('user_coupon')->group(function(){
     Route::get('/', [\App\Http\Controllers\UserCouponController::class, 'getUserCoupon']);
