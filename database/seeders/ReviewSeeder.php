@@ -14,6 +14,9 @@ class ReviewSeeder extends Seeder
      */
     public function run()
     {
+        //coupon id 1
+        //user id 2
+        //review id 1
         $review = new Review();
         $review->user_id = 2;
         $review->coupon_id = 1;
@@ -21,6 +24,9 @@ class ReviewSeeder extends Seeder
         $review->score = 4;
         $review->save();    
 
+        //coupon id 6
+        //user id 2
+        //review id 2
         $review = new Review();
         $review->user_id = 2;
         $review->coupon_id = 6;
@@ -28,6 +34,9 @@ class ReviewSeeder extends Seeder
         $review->score = 3;
         $review->save();  
 
+        //coupon id 3
+        //user id 2
+        //review id 3
         $review = new Review();
         $review->user_id = 2;
         $review->coupon_id = 3;
@@ -35,6 +44,9 @@ class ReviewSeeder extends Seeder
         $review->score = 5;
         $review->save();  
 
+        //coupon id 5
+        //user id 2
+        //review id 4
         $review = new Review();
         $review->user_id = 2;
         $review->coupon_id = 5;
