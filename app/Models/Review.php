@@ -13,9 +13,7 @@ class Review extends Model
        return $this->belongsTo(Coupon::class);
     }
 
-    public function user(){
-        return $this->belongsTo(User::class);
-    }
+
 
     public function service(){
         return $this->belongsTo(Service::class);

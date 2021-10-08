@@ -21,9 +21,6 @@ class CreateReviewsTable extends Migration
 
             // coupon name : get from coupon
             $table->foreignIdFor(\App\Models\Coupon::class);
-            // user : who review
-            $table->foreignIdFor(\App\Models\User::class);
-
             $table->timestamps();
         });
     }
