@@ -10,10 +10,10 @@ class Review extends Model
     use HasFactory;
 
     public function coupon(){
-        return $this->belongsTo(Coupon::class);
+        $this->belongsTo(Coupon::class);
     }
 
     public function user(){
-        return $this->belongsTo(User::class);
+        $this->belongsTo(User::class);
     }
 }

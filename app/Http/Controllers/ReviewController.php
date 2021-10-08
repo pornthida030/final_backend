@@ -11,8 +11,8 @@ class ReviewController extends Controller
 {
     public function getAllReview()
     {
-        $reviews= Review::find(1);
-        return $reviews->coupon;
+        $reveiws= Review::all();
+        return $reveiws;
     }
 
     public function createReview(Request $request,$id)
