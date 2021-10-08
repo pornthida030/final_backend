@@ -11,116 +11,154 @@ use App\Models\User;
 class UserController extends Controller
 {
     // แสดง Get ทั้งหมด
-        public function getAllUsers(){
-            $user = User::all();
-            return $user;
-        }
+    public function getAllUsers()
+    {
+        $user = User::all();
+        return $user;
+    }
 
     // get 1 type
-        public function getUser($id){
-            $user = User::find($id);
-            return $user;
-        }
+    public function getUser($id)
+    {
+        $user = User::find($id);
+        return $user;
+    }
 
     // GET /user/me -- ส่งข้อมูล user ตาม id ใน token
-        public function getMe(Request $request){
-            $token = $request->header('Authorization');
-            
-            $credentials = JWT::decode($token, env('JWT_SECRET'), ['HS256']);
+    public function getMe(Request $request)
+    {
+        $token = $request->header('Authorization');
 
-            $user = User::find($credentials->sub); // sub เนื้อหา token จะให้มันเป็น user id เพื่อที่จะได้รู้ว่า token นี้เป็นของใคร
-            return $user;
-        }
-    // PUT /user/{id} -- แก้ไขข้อมูลของ user ตาม parameter ที่ส่งมา โดย จำเป็นต้องมี permission admin เท่านั้น
-        public function updateUser(Request $request, $id){
-            $user = User::findOrFail($id);
-            $validator = Validator::make($request->all(), [
-                'name' => 'required',
-                'role' => 'required'
-            ]);
+        $credentials = JWT::decode($token, env('JWT_SECRET'), ['HS256']);
 
-            if ($validator->fails()) {
-                $errors = $validator->errors();
-    
+        $user = User::find($credentials->sub); // sub เนื้อหา token จะให้มันเป็น user id เพื่อที่จะได้รู้ว่า token นี้เป็นของใคร
+        return $user;
+    }
+
+    // POST Add User -- for admin
+    public function addUser(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'username' => 'required|unique:users',
+            'password' => 'required',
+            'name' => 'required',
+            'role' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+            return [
+                "status" => "error",
+                "error" => $errors
+            ];
+        } else {
+            $user = new User();
+            $user->name = $request->name;
+            $user->username = $request->username;
+            $user->password = Hash::make($request->password);
+            $user->role = $request->role;
+
+            if ($user->save()) {
                 return [
-                    "status"=> "error", 
-                    "error" => $errors
+                    'status' => 'success',
+                    'data' => $user,
                 ];
             } else {
-                $user->name = $request->name;
-                $user->role = $request->role;
-    
-                if ($user->save()){
-                    return $user;
-                }else {
-                    return
+                return [
+                    'status' => 'error',
+                    'data' => "Can't add user",
+                ];
+            }
+        }
+    }
+
+    // PUT /user/{id} -- แก้ไขข้อมูลของ user ตาม parameter ที่ส่งมา โดย จำเป็นต้องมี permission admin เท่านั้น
+    public function updateUser(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'role' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+            return [
+                "status" => "error",
+                "error" => $errors
+            ];
+        } else {
+            $user->name = $request->name;
+            if (!empty($request->password)) {
+                $user->password = Hash::make($request->password);
+            }
+            $user->role = $request->role;
+
+            if ($user->save()) {
+                return $user;
+            } else {
+                return
                     [
-                        "status"=> "error", 
+                        "status" => "error",
                         "error" => "แก้ไขไม่ได้"
                     ];
-                }
             }
-
-            
-
-
         }
+    }
     // PUT /user/me -- แก้ไขข้อมูลของตัวเอง
-        public function updateMe(Request $request){
-            $token = $request->header('Authorization');
-            $credentials = JWT::decode($token, env('JWT_SECRET'), ['HS256']);
-            $user = User::find($credentials->sub);
+    public function updateMe(Request $request)
+    {
+        $token = $request->header('Authorization');
+        $credentials = JWT::decode($token, env('JWT_SECRET'), ['HS256']);
+        $user = User::find($credentials->sub);
 
-            $validator = Validator::make($request->all(), [
-                'oldpassword' => 'required',
-                'newpassword' => 'required'
-            ]);
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'oldpassword' => 'required',
+            'newpassword' => 'required'
+        ]);
 
-           
-            if ($validator->fails()) {
-                $errors = $validator->errors();
-    
-                return [
-                    "status"=> "error", 
-                    "error" => $errors
-                ];
-            } else {
-                if (Hash::check($request->oldpassword, $user->password)){
-                    $user->password = Hash::make($request->newpassword);
-                    if ($user->save()){
-                        return $user;
-                    }else {
-                        return
-                        [
-                            "status"=> "error", 
-                            "error" => "แก้ไขไม่ได้"
-                        ];
-                    }
-                }else{
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+
+            return [
+                "status" => "error",
+                "error" => $errors
+            ];
+        } else {
+            if (Hash::check($request->oldpassword, $user->password)) {
+                $user->name = $request->name;
+                $user->password = Hash::make($request->newpassword);
+                if ($user->save()) {
+                    return $user;
+                } else {
                     return
                         [
-                            "status"=> "error", 
-                            "error" => "พาสเวิร์ดเก่าไม่ตรง"
+                            "status" => "error",
+                            "error" => "แก้ไขไม่ได้"
                         ];
                 }
-    
-
+            } else {
+                return
+                    [
+                        "status" => "error",
+                        "error" => "พาสเวิร์ดเก่าไม่ตรง"
+                    ];
             }
-
-
-
         }
+    }
     // delete
     public function destroy(Request $request, $id)
     {
         $user = User::findOrFail($id);
-        if ( $user->delete() ) {
-            return [ 
-                "status"=> "success" 
+        if ($user->delete()) {
+            return [
+                "status" => "success"
             ];
         } else {
-            return [ 
-                "status"=> "error", 
+            return [
+                "status" => "error",
                 "error" => "ลบไม่ได้"
             ];
         }
@@ -134,48 +172,48 @@ class UserController extends Controller
             $token = $this->jwt($user);
             $user["api_token"] = $token;
             return $user;
-        }else {
-            return [ 
-                "status"=> "error", 
+        } else {
+            return [
+                "status" => "error",
                 "error" => "เข้าไม่ได้"
             ];
         }
     }
 
     // register
-    public function register(Request $request){
+    public function register(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'username' => 'required|unique:users',
             'password' => 'required',
             'name' => 'required'
         ]);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             $errors = $validator->errors();
             return [
                 'status' => 'error',
                 'data' => $errors,
             ];
-        }else{
+        } else {
             $user = new User();
             $user->name = $request->name;
             $user->username = $request->username;
             $user->password = Hash::make($request->password);
 
-            if($user->save()){
+            if ($user->save()) {
                 $token = $this->jwt($user);
                 $user['api_token'] = $token;
                 return [
                     'status' => 'success',
                     'data' => $user,
                 ];
-            }else{
+            } else {
                 return [
                     'status' => 'error',
                     'data' => "Can't register",
                 ];
             }
-
         }
     }
 
@@ -189,5 +227,5 @@ class UserController extends Controller
         ];
         return JWT::encode($payload, env('JWT_SECRET'));
     }
-
 }
+
