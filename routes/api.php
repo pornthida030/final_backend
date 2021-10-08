@@ -30,6 +30,7 @@ Route::middleware(['jwt.auth:ADMIN,USER'])->prefix('user')->group(function() {
 Route::middleware(['jwt.auth:ADMIN'])->prefix('user')->group(function() {
     Route::get('/',[App\Http\Controllers\UserController::class, 'getAllUsers']);
     Route::get('/{id}',[App\Http\Controllers\UserController::class, 'getUser']);
+    Route::post('/',[App\Http\Controllers\UserController::class, 'addUser']);
     Route::put('/{id}',[App\Http\Controllers\UserController::class, 'updateUser']);
     Route::delete('/{id}',[App\Http\Controllers\UserController::class, 'destroy']);
 });
@@ -89,5 +90,4 @@ Route::middleware(['jwt.auth:ADMIN'])->prefix('service')->group(function() {
 Route::prefix('review')->group(function(){
     Route::post('/{id}',[App\Http\Controllers\ReviewController::class,'createReview']);
     Route::get('/',[App\Http\Controllers\ReviewController::class,'getAllReview']);
-    
 });
