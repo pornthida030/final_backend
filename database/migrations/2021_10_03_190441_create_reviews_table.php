@@ -15,6 +15,7 @@ class CreateReviewsTable extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->foreignIdFor(\App\Models\Service::class); // service_id
             $table->integer('score');
             $table->longText('review_detail');
 
