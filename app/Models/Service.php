@@ -17,6 +17,10 @@ class Service extends Model
         return $this->belongsTo(Type::class);
     }
 
+    public function userCoupons(){
+        return $this->hasMany(UserCoupon::class);
+    }
+
     public function reviews(){
         return $this->hasMany(Review::class);
     }

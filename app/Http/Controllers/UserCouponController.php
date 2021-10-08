@@ -14,6 +14,8 @@ class UserCouponController extends Controller
     public function getUserCoupon() {
 //        $user_coupon = UserCoupon::get();
         $user_coupon = UserCoupon::all();
+        $user_coupon["coupon"] = $user_coupon->coupon;
+        $user_coupon["service"] = $user_coupon->service;
         return $user_coupon;
     }
 
@@ -25,12 +27,13 @@ class UserCouponController extends Controller
     public function addUserCoupon(Request $request, $id, User $user)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
+        
             'price' => 'required',
             'time' => 'required',
         ]);
 
         $user_coupon = UserCoupon::findOrFail($id);
+        $user_coupon->coupon_owner = $user->name;
         $user_coupon->coupon_owner = $user->name;
 
         if ($validator->fails()) {
@@ -41,12 +44,12 @@ class UserCouponController extends Controller
             ];
         }
         else {
-            $coupon = new Coupon();
-            $coupon->name = $request->name;
-            $coupon->price = $request->price;
-            $coupon->time = $request->time;
+            $user_coupon = new UserCoupon();
+            $user_coupon->name = $request->name;
+            $user_coupon->price = $request->price;
+            $user_coupon->time = $request->time;
 
-            if ($coupon->save()){
+            if ($user_coupon->save()){
                 return $user_coupon;
             }
             else {
