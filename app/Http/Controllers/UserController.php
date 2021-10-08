@@ -168,14 +168,26 @@ class UserController extends Controller
     public function login(Request $request)
     {
         $user = User::where('username', $request->username)->first();
-        if (!empty($user) && Hash::check($request->password, $user->password)) {
-            $token = $this->jwt($user);
-            $user["api_token"] = $token;
-            return $user;
-        } else {
-            return [
-                "status" => "error",
-                "error" => "เข้าไม่ได้"
+        if (!empty($user)) {
+            if(Hash::check($request->password, $user->password)){
+                $token = $this->jwt($user);
+                $user["api_token"] = $token;
+                return [
+                    "user"=>$user,
+                    "status"=>"success"
+                ];
+            }
+            else{
+                return [
+                    "status"=>"error",
+                    "error"=>"Password ไม่ถูกต้อง"
+                ];
+            }
+            
+        }else {
+            return [ 
+                "status"=> "error", 
+                "error" => "ไม่พบ Username นี้"
             ];
         }
     }
@@ -189,31 +201,32 @@ class UserController extends Controller
             'name' => 'required'
         ]);
 
-        if ($validator->fails()) {
+        if($validator->fails()){
             $errors = $validator->errors();
             return [
                 'status' => 'error',
-                'data' => $errors,
+                'error' => $errors,
             ];
-        } else {
+        }else{
             $user = new User();
             $user->name = $request->name;
             $user->username = $request->username;
             $user->password = Hash::make($request->password);
 
-            if ($user->save()) {
+            if($user->save()){
                 $token = $this->jwt($user);
                 $user['api_token'] = $token;
                 return [
                     'status' => 'success',
-                    'data' => $user,
+                    'user' => $user,
                 ];
-            } else {
+            }else{
                 return [
                     'status' => 'error',
-                    'data' => "Can't register",
+                    'error' => "Can't register",
                 ];
             }
+
         }
     }
 
