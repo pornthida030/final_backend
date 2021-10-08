@@ -22,8 +22,8 @@ class ReviewController extends Controller
         [
             'name' => 'required',
             'score'=>'required',
-            'review_detail'=>'required'
-            
+            'review_detail'=>'required',
+            'coupon_name'=>'required'
         ]);
         if($validator->fails()){
             $error = $validator->errors();
@@ -35,7 +35,7 @@ class ReviewController extends Controller
             $review = new Review();
             $review->score=$request->score;
             $review->review_detail=$request->review_detail;
-            $review->coupon_id=$id;
+            $review->coupon_name=$request->coupon_name;
             $review->name=$request->name;
             if($review->save()){
                 return $review;

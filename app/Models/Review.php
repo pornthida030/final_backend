@@ -9,12 +9,6 @@ class Review extends Model
 {
     use HasFactory;
 
-    public function coupon(){
-       return $this->belongsTo(Coupon::class);
-    }
-
-
-
     public function service(){
         return $this->belongsTo(Service::class);
     }
