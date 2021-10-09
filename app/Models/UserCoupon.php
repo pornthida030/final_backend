@@ -17,4 +17,8 @@ class UserCoupon extends Model
         return $this->belongsTo(Coupon::class);
     }
 
+    public function service(){
+        return $this->belongsTo(Service::class);
+    }
+
 }

@@ -70,7 +70,7 @@ Route::middleware(['jwt.auth:ADMIN,USER'])->prefix('user_coupon')->group(functio
 
 // UserCoupon Controller for Admin
 Route::middleware(['jwt.auth:ADMIN'])->prefix('user_coupon')->group(function(){
-    Route::put('/',[App\Http\Controllers\UserCouponController::class, 'update']);
+    Route::put('/{id}',[App\Http\Controllers\UserCouponController::class, 'updateCouponStatus']);
     Route::delete('/{id}',[App\Http\Controllers\UserCouponController::class, 'destroy']);
 });
 

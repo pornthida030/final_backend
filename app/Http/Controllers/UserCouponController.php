@@ -11,83 +11,74 @@ use Illuminate\Support\Facades\Validator;
 class UserCouponController extends Controller
 {
 
-    public function getUserCoupon() {
-//        $user_coupon = UserCoupon::get();
+    public function getUserCoupon()
+    {
         $user_coupon = UserCoupon::all();
+      
+        foreach ($user_coupon as $mama) {
+            $mama['service'] = $mama->service;
+            $mama['coupon'] = $mama->coupon;
+            $mama['user'] = $mama->user;
+
+          }
         return $user_coupon;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function addUserCoupon(Request $request, $id, User $user)
+    public function addUserCoupon(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'price' => 'required',
-            'time' => 'required',
+            'service_id' => 'required',            
+            'user_id' => 'required',
+            'coupon_id' => 'required'
         ]);
-
-        $user_coupon = UserCoupon::findOrFail($id);
-        $user_coupon->coupon_owner = $user->name;
 
         if ($validator->fails()) {
             $errors = $validator->errors();
             return [
-                "status"=> "error",
+                "status" => "error",
                 "error" => $errors
             ];
-        }
-        else {
-            $coupon = new Coupon();
-            $coupon->name = $request->name;
-            $coupon->price = $request->price;
-            $coupon->time = $request->time;
+        } else {
+            $user_coupon = new UserCoupon();
+            $user_coupon->service_id = $request->service_id;
+            $user_coupon->user_id = $request->user_id;
+            $user_coupon->coupon_id = $request->coupon_id;
 
-            if ($coupon->save()){
+            if ($user_coupon->save()) {
                 return $user_coupon;
-            }
-            else {
+            } else {
                 return
                     [
-                        "status"=> "error",
-                        "error" => "สร้างไม่ได้"
+                        "status" => "error",
+                        "error" => "ไม่สามารถเพิ่มคูปอง"
                     ];
             }
         }
     }
 
-    public function update(Request $request, $id){
+    public function updateCouponStatus(Request $request, $id)
+    {
         $user_coupon = UserCoupon::findOrFail($id);
-
         $validator = Validator::make($request->all(), [
-            'type' => 'required',
             'coupon_status' => 'required',
-            'reviewed' => 'required',
         ]);
 
         if ($validator->fails()) {
             $errors = $validator->errors();
 
             return [
-                "status"=> "error",
+                "status" => "error",
                 "error" => $errors
             ];
-        }
-        else {
-            $user_coupon->name = $request->type;
-            $user_coupon->price = $request->coupon_status;
-            $user_coupon->time = $request->reviewed;
+        } else {
+            $user_coupon->coupon_status = $request->coupon_status;
 
-            if ($user_coupon->save()){
+            if ($user_coupon->save()) {
                 return $user_coupon;
-            }
-            else {
+            } else {
                 return
                     [
-                        "status"=> "error",
+                        "status" => "error",
                         "error" => "แก้ไขไม่ได้"
                     ];
             }
@@ -103,13 +94,13 @@ class UserCouponController extends Controller
     public function destroy($id)
     {
         $user_coupon = UserCoupon::findOrFail($id);
-        if ( $user_coupon->delete() ) {
+        if ($user_coupon->delete()) {
             return [
-                "status"=> "success"
+                "status" => "success"
             ];
         } else {
             return [
-                "status"=> "error",
+                "status" => "error",
                 "error" => "ลบไม่ได้"
             ];
         }
