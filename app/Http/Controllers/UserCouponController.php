@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+
+use Firebase\JWT\JWT;
 use App\Models\Coupon;
 use App\Models\User;
 use App\Models\UserCoupon;

@@ -11,8 +11,8 @@ class ReviewController extends Controller
 {
     public function getAllReview()
     {
-        $reveiws= Review::all();
-        return $reveiws;
+        $reviews= Review::all();
+        return $reviews;
     }
 
     public function createReview(Request $request,$id)
@@ -20,7 +20,6 @@ class ReviewController extends Controller
         
         $validator = Validator::make($request->all(),
         [
-            
             'score'=>'required',
             'review_detail'=>'required'
         ]);

@@ -32,6 +32,8 @@ class UserController extends Controller
         $credentials = JWT::decode($token, env('JWT_SECRET'), ['HS256']);
 
         $user = User::find($credentials->sub); // sub เนื้อหา token จะให้มันเป็น user id เพื่อที่จะได้รู้ว่า token นี้เป็นของใคร
+    
+        $user['user_coupon'] = $user->user_coupon;
         return $user;
     }
 

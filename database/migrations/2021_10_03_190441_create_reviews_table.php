@@ -20,7 +20,7 @@ class CreateReviewsTable extends Migration
             $table->foreignIdFor(\App\Models\User::class);
             $table->integer('score');
             $table->longText('review_detail');
-            // coupon name : get from coupon
+            $table->timestamps();
         
         });
     }

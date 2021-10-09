@@ -41,7 +41,7 @@ class ReviewSeeder extends Seeder
         //review id 3
         $review = new Review();
         $review->service_id= 1;
-        $review->user_id = 2;
+        $review->user_id = 3;
         $review->coupon_id = 3;
         $review->review_detail = "สีผมโดนใจมากค่ะ บริการดีมากเลยค่ะ";
         $review->score = 5;
@@ -53,7 +53,7 @@ class ReviewSeeder extends Seeder
          
         $review = new Review();
         $review->service_id= 3;
-        $review->user_id = 2;
+        $review->user_id = 3;
         $review->coupon_id = 5;
         $review->review_detail = "นวดสบายมากค่ะ";
         $review->score = 4;
