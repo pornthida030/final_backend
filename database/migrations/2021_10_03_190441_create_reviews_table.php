@@ -17,7 +17,7 @@ class CreateReviewsTable extends Migration
             $table->bigIncrements('id');
             $table->foreignIdFor(\App\Models\Service::class); // service_id
             $table->foreignIdFor(\App\Models\Coupon::class);
-            $table->string('coupon_name');
+            $table->foreignIdFor(\App\Models\User::class);
             $table->integer('score');
             $table->longText('review_detail');
             // coupon name : get from coupon
