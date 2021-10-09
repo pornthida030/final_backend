@@ -9,6 +9,10 @@ class Coupon extends Model
 {
     use HasFactory;
 
+    public function type(){
+        return $this->belongTo(Type::class);
+    }
+    
     public function service(){
         return $this->belongsTo(Service::class);
     }

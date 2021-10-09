@@ -17,6 +17,7 @@ class CouponSeeder extends Seeder
         // ย้อมผม service id 1
         // coupon id 1
         $coupon = new Coupon();
+        $coupon->type_id = 1;
         $coupon->service_id = 1;
         $coupon->name = "ย้อมผม+กัดสีผม 1 รอบ";
         $coupon->price = 500;
@@ -26,6 +27,7 @@ class CouponSeeder extends Seeder
         // ย้อมผม service id 1
         // coupon id 2
         $coupon = new Coupon();
+        $coupon->type_id = 1;
         $coupon->service_id = 1;
         $coupon->name = "ย้อมผม+กัดสีผม ด้วยผลิตภัณฑ์ออแกนิก";
         $coupon->price = 2000;
@@ -35,6 +37,7 @@ class CouponSeeder extends Seeder
         // ย้อมผม service id 1
         // coupon id 3
         $coupon = new Coupon();
+        $coupon->type_id = 1;
         $coupon->service_id = 1;
         $coupon->name = "ย้อมผม+ทำไฮไลท์";
         $coupon->price = 800;
@@ -44,6 +47,7 @@ class CouponSeeder extends Seeder
         // ตัดผม service id 2
         // coupon id 4
         $coupon = new Coupon();
+        $coupon->type_id = 1;
         $coupon->service_id = 2;
         $coupon->name = "ตัดผมประบ่า";
         $coupon->price = 200;
@@ -53,6 +57,7 @@ class CouponSeeder extends Seeder
         // นวดฝ่าเท้า service id 3
         // coupon id 5
         $coupon = new Coupon();
+        $coupon->type_id = 2;
         $coupon->service_id = 3;
         $coupon->name = "นวดฝ่าเท้าด้วยน้ำมันมวย";
         $coupon->price = 100;
@@ -62,6 +67,7 @@ class CouponSeeder extends Seeder
         // นวดหน้า service id 4
         // coupon id 6
         $coupon = new Coupon();
+        $coupon->type_id = 2;
         $coupon->service_id = 4;
         $coupon->name = "นวดหน้าด้วยน้ำมันมะพร้าว";
         $coupon->price = 900;

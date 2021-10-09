@@ -15,6 +15,7 @@ class CreateCouponsTable extends Migration
     {
         Schema::create('coupons', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->foreignIdFor(\App\Models\Type::class); // type_id
             $table->foreignIdFor(\App\Models\Service::class); // service_id
             $table->string('name');
             $table->float('price');

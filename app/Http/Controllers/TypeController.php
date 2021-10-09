@@ -11,6 +11,11 @@ class TypeController extends Controller
     // แสดง Type ทั้งหมด
     public function getAllTypes(){
         $type = Type::all();
+        
+        foreach ($type as $papa){
+           $papa['service_count'] = $papa->services()->count(); 
+           $papa['coupon_count'] = $papa->coupons()->count();
+        }
         return $type;
     }
 

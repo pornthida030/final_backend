@@ -9,6 +9,8 @@ class Service extends Model
 {
     use HasFactory;
 
+
+
     public function user_coupons(){
         return $this->hasMany(UserCoupon::class);
     }
