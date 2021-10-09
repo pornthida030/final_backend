@@ -17,7 +17,6 @@ class ServiceController extends Controller
     public function getServiceAndCoupons($id){
         $service = Service::find($id);
         $service["coupons"] = $service->coupons;
-        $service["reviews"] = $service->reviews;
         return $service;
     }
 

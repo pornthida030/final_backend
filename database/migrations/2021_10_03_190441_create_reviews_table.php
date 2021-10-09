@@ -16,11 +16,12 @@ class CreateReviewsTable extends Migration
         Schema::create('reviews', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->foreignIdFor(\App\Models\Service::class); // service_id
+            $table->foreignIdFor(\App\Models\Coupon::class);
             $table->string('coupon_name');
-            $table->string('name');
             $table->integer('score');
             $table->longText('review_detail');
-            $table->timestamps();
+            // coupon name : get from coupon
+        
         });
     }
 

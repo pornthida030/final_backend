@@ -20,10 +20,9 @@ class ReviewController extends Controller
         
         $validator = Validator::make($request->all(),
         [
-            'name' => 'required',
+            
             'score'=>'required',
-            'review_detail'=>'required',
-            'coupon_name'=>'required'
+            'review_detail'=>'required'
         ]);
         if($validator->fails()){
             $error = $validator->errors();
@@ -32,13 +31,13 @@ class ReviewController extends Controller
                 "error"=>$error
             ];
         }else{
-            $review = new Review();
-            $review->score=$request->score;
-            $review->review_detail=$request->review_detail;
-            $review->coupon_name=$request->coupon_name;
-            $review->name=$request->name;
-            if($review->save()){
-                return $review;
+            $reveiw = new Review();
+            $reveiw->score=$request->score;
+            $reveiw->review_detail=$request->review_detail;
+            $reveiw->coupon_id=$id;
+            $reveiw->user_id=$request->user_id;
+            if($reveiw->save()){
+                return $reveiw;
             }
             else{
                 return [

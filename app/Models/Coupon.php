@@ -20,4 +20,8 @@ class Coupon extends Model
     public function user_coupons(){
         return $this->hasMany(UserCoupon::class);
     }
+
+    public function review(){
+        return $this->hasMany(Review::class);
+    }
 }

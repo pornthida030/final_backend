@@ -113,6 +113,7 @@ class UserController extends Controller
         $user = User::find($credentials->sub);
 
         $validator = Validator::make($request->all(), [
+            'name' => 'required',
             'oldpassword' => 'required',
             'newpassword' => 'required'
         ]);
@@ -127,6 +128,7 @@ class UserController extends Controller
             ];
         } else {
             if (Hash::check($request->oldpassword, $user->password)) {
+                $user->name = $request->name;
                 $user->password = Hash::make($request->newpassword);
                 if ($user->save()) {
                     return $user;

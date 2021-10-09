@@ -27,6 +27,10 @@ class User extends Authenticatable
         return $this->hasMany(UserCoupon::class);
     }
 
+    public function review(){
+        return $this->hasMany(Review::class);
+    }
+
 
 
     /**
