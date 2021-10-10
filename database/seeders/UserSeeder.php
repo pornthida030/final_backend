@@ -31,5 +31,13 @@ class UserSeeder extends Seeder
         $user->password = Hash::make("password");
         $user->save();
 
+         // user id 3
+         $user = new User();
+         $user->role = "EMPLOYEE";
+         $user->name = "ช่างหนูรัตน์";
+         $user->username = "employee1";
+         $user->password = Hash::make("password");
+         $user->save();
+
     }
 }

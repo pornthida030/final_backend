@@ -18,6 +18,13 @@ class ServiceController extends Controller
         $service = Service::find($id);
         $service["coupons"] = $service->coupons;
         $service["reviews"] = $service->reviews;
+
+        foreach ($service['reviews'] as $kaka){
+            $kaka['user_name'] = $kaka->user;
+            $kaka['coupon_name'] = $kaka->coupon;
+
+        }
+
         return $service;
     }
 

@@ -87,7 +87,9 @@ Route::middleware(['jwt.auth:ADMIN'])->prefix('service')->group(function() {
     Route::delete('/{id}',[App\Http\Controllers\ServiceController::class, 'destroy']);
 });
 
+// Review
 Route::prefix('review')->group(function(){
-    Route::post('/{id}',[App\Http\Controllers\ReviewController::class,'createReview']);
+    Route::post('/',[App\Http\Controllers\ReviewController::class,'createReview']);
     Route::get('/',[App\Http\Controllers\ReviewController::class,'getAllReview']);
+    Route::get('/random', [App\Http\Controllers\ReviewController::class, 'random']);
 });

@@ -33,7 +33,12 @@ class UserController extends Controller
 
         $user = User::find($credentials->sub); // sub เนื้อหา token จะให้มันเป็น user id เพื่อที่จะได้รู้ว่า token นี้เป็นของใคร
     
-        $user['user_coupon'] = $user->user_coupon;
+        $user['user_coupon'] = $user->user_coupons;
+        foreach ($user['user_coupon'] as $zaza){
+            $zaza['service'] = $zaza->service;
+            $zaza['coupon'] = $zaza->coupon;
+        }
+
         return $user;
     }
 

@@ -19,7 +19,7 @@ class UserCouponSeeder extends Seeder
         $user_coupon = new UserCoupon();
         $user_coupon->service_id = 1;
 
-        $user_coupon->user_id = 1;
+        $user_coupon->user_id = 2;
         $user_coupon->coupon_id = 1;
         $user_coupon->coupon_status= "used";
         $user_coupon->reviewed = true;
@@ -30,7 +30,7 @@ class UserCouponSeeder extends Seeder
         $user_coupon = new UserCoupon();
         $user_coupon->service_id = 1;
 
-        $user_coupon->user_id = 1;
+        $user_coupon->user_id = 2;
         $user_coupon->coupon_id = 2;
         $user_coupon->coupon_status= "used";
         $user_coupon->reviewed = false;
@@ -41,7 +41,7 @@ class UserCouponSeeder extends Seeder
         $user_coupon = new UserCoupon();
         $user_coupon->service_id = 1;
 
-        $user_coupon->user_id = 1;
+        $user_coupon->user_id = 2;
         $user_coupon->coupon_id = 2;
         $user_coupon->coupon_status= "unuse";
         $user_coupon->reviewed = true;

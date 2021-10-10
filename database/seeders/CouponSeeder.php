@@ -74,6 +74,30 @@ class CouponSeeder extends Seeder
         $coupon->time = 45; 
         $coupon->save();
 
+        $coupon = new Coupon();
+        $coupon->type_id = 1;
+        $coupon->service_id = 1;
+        $coupon->name = "ย้อมผม+กัดสีผม 1 รอบ";
+        $coupon->price = 500;
+        $coupon->time = 100; 
+        $coupon->save();
+
+        $coupon = new Coupon();
+        $coupon->type_id = 1;
+        $coupon->service_id = 1;
+        $coupon->name = "ย้อมผม+กัดสีผม 1 รอบ";
+        $coupon->price = 500;
+        $coupon->time = 100; 
+        $coupon->save();
+
+        $coupon = new Coupon();
+        $coupon->type_id = 1;
+        $coupon->service_id = 1;
+        $coupon->name = "ย้อมผม+กัดสีผม 1 รอบ";
+        $coupon->price = 500;
+        $coupon->time = 100; 
+        $coupon->save();
+
         
 
 
