@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ReviewSeeder::class);
         $this->call(UserCouponSeeder::class);
         $this->call(UserSeeder::class);
+        $this->call(PaymentRecordSeeder::class);
         // \App\Models\User::factory(10)->create();
     }
 }
