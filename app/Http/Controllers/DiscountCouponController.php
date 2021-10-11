@@ -37,7 +37,8 @@ class DiscountCouponController extends Controller
         $validator=Validator::make($request->all(),[
             'specific_code'=>'required',
             'discount_percent'=>'required',
-            'minimum_cost'=>'required'
+            'minimum_cost'=>'required',
+            'quantity' => 'required'
         ]);
         if($validator->fails()){
             $errors=$validator->errors();
@@ -51,6 +52,7 @@ class DiscountCouponController extends Controller
             $discountCoupon->specific_code=$request->specific_code;
             $discountCoupon->discount_percent=$request->discount_percent;
             $discountCoupon->minimum_cost=$request->minimum_cost;
+            $discountCoupon->quantity=$request->quantity;
             if($discountCoupon->save()){
                 return $discountCoupon;
             }
@@ -69,7 +71,8 @@ class DiscountCouponController extends Controller
         $validator = Validator::make($request->all(), [
             'specific_code' => 'required',
             'discount_percent' => 'required',
-            'minimum_cost' => 'required'
+            'minimum_cost' => 'required',
+            'quantity' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -83,7 +86,7 @@ class DiscountCouponController extends Controller
             $discountCoupon->specific_code = $request->specific_code;
             $discountCoupon->discount_percent = $request->discount_percent;
             $discountCoupon->minimum_cost = $request->minimum_cost;
-
+            $discountCoupon->quantity=$request->quantity;
             if ($discountCoupon->save()){
                 return $discountCoupon;
             }else {

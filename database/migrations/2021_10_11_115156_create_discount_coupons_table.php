@@ -18,6 +18,7 @@ class CreateDiscountCouponsTable extends Migration
             $table->longText('specific_code');
             $table->integer('discount_percent');
             $table->integer('minimum_cost');
+            $table->integer('quantity');
             $table->timestamps();
         });
     }

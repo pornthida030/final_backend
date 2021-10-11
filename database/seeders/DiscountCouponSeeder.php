@@ -19,6 +19,7 @@ class DiscountCouponSeeder extends Seeder
         $coupon->specific_code = "AT284nGA";
         $coupon->discount_percent = 50;
         $coupon->minimum_cost = 500; 
+        $coupon->quantity = 10;
         $coupon->save();
 
         //id 2
@@ -26,6 +27,7 @@ class DiscountCouponSeeder extends Seeder
         $coupon->specific_code = "MP3884h88";
         $coupon->discount_percent = 20;
         $coupon->minimum_cost = 200; 
+        $coupon->quantity = 5;
         $coupon->save();
 
         //id 3
@@ -33,6 +35,7 @@ class DiscountCouponSeeder extends Seeder
         $coupon->specific_code = "FIRSTTIME";
         $coupon->discount_percent = 30;
         $coupon->minimum_cost = 300; 
+        $coupon->quantity = 4;
         $coupon->save();
 
         //id 4
@@ -40,6 +43,7 @@ class DiscountCouponSeeder extends Seeder
         $coupon->specific_code = "TENTEN123456";
         $coupon->discount_percent = 10;
         $coupon->minimum_cost = 100; 
+        $coupon->quantity = 2;
         $coupon->save();
 
     }
