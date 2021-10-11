@@ -93,3 +93,9 @@ Route::prefix('review')->group(function(){
     Route::get('/',[App\Http\Controllers\ReviewController::class,'getAllReview']);
     Route::get('/random', [App\Http\Controllers\ReviewController::class, 'random']);
 });
+
+Route::middleware(['jwt.auth:ADMIN'])->prefix('discount_coupon')->group(function() {
+    Route::post('/',[App\Http\Controllers\DiscountCouponController::class, 'create']);
+    Route::put('/{id}',[App\Http\Controllers\DiscountCouponController::class, 'update']);
+    Route::delete('/{id}',[App\Http\Controllers\DiscountCouponController::class, 'destory']);
+});
