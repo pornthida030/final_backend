@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\Employee;
 
 class EmployeeSeeder extends Seeder
 {
@@ -13,6 +14,9 @@ class EmployeeSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $employee = new Employee();
+        $employee->type_id = 1;
+        $employee->user_id = 1;
+        $employee->save();
     }
 }

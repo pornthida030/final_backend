@@ -23,6 +23,12 @@ class TypeController extends Controller
     public function getTypeAndService($id){
         $type = Type::find($id);
         $type["services"] = $type->services;
+        $type["employees"] = $type->employees($id)->get();
+
+        foreach ($type["employees"] as $employee) {
+            $employee["name"] = $employee->user()->value('name');
+        }
+
         foreach ($type["services"] as $yaya){
             $yaya["coupon_count"] = $yaya->coupons()->count();
         }

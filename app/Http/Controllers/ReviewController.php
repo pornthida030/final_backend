@@ -10,13 +10,6 @@ use App\Models\UserCoupon;
 
 class ReviewController extends Controller
 {
-    public function getAllReview()
-    {
-        $reviews = Review::all();
-
-        return $reviews;
-    }
-
     public function createReview(Request $request)
     {
 

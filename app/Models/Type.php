@@ -16,4 +16,8 @@ class Type extends Model
     public function coupons(){
         return $this->hasMany(Coupon::class);
     }
+
+    public function employees($type_id){
+        return $this->hasMany(Employee::class)->where('type_id',$type_id);
+    }
 }

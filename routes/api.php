@@ -87,9 +87,13 @@ Route::middleware(['jwt.auth:ADMIN'])->prefix('service')->group(function() {
     Route::delete('/{id}',[App\Http\Controllers\ServiceController::class, 'destroy']);
 });
 
-// Review
-Route::prefix('review')->group(function(){
+// Review Controller
+Route::middleware(['jwt.auth:ADMIN,USER'])->prefix('review')->group(function(){
     Route::post('/',[App\Http\Controllers\ReviewController::class,'createReview']);
-    Route::get('/',[App\Http\Controllers\ReviewController::class,'getAllReview']);
-    Route::get('/random', [App\Http\Controllers\ReviewController::class, 'random']);
+});
+
+// Employee Controller for Admin
+Route::middleware(['jwt.auth:ADMIN'])->prefix('employee')->group(function(){
+    Route::post('/',[App\Http\Controllers\EmployeeController::class, 'AddEmployeeToType']);
+    Route::delete('/{id}',[App\Http\Controllers\EmployeeController::class, 'RemoveEmployeeFromType']);
 });

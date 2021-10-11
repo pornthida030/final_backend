@@ -4,82 +4,55 @@ namespace App\Http\Controllers;
 
 use App\Models\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class EmployeeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    // เพิ่มพนักงานลง Type
+    public function AddEmployeeToType(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'type_id' => 'required',
+            'user_id' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+
+            return [
+                "status"=> "error", 
+                "error" => $errors
+            ];
+        } else {
+            $employee = new Employee();
+            $employee->type_id = $request->type_id;
+            $employee->user_id = $request->user_id;
+
+            if ($employee->save()){
+                return $employee;
+            }else {
+                return
+                [
+                    "status"=> "error", 
+                    "error" => "ไม่สามารถเพิ่มพนักงานลงไปในประเภทนี้ได้"
+                ];
+            }
+        }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    // ลบพนักงานออกจาก Type โดย $id คือ id ของตัว Employee
+    public function RemoveEmployeeFromType($id)
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Employee  $employee
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Employee $employee)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Employee  $employee
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Employee $employee)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Employee  $employee
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Employee $employee)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Employee  $employee
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Employee $employee)
-    {
-        //
+        $employee = Employee::findOrFail($id);
+        if ( $employee->delete() ) {
+            return [ 
+                "status"=> "success" 
+            ];
+        } else {
+            return [ 
+                "status"=> "error", 
+                "error" => "ลบไม่ได้"
+            ];
+        }
     }
 }
