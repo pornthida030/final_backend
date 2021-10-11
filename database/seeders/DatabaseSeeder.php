@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\DiscountCoupon;
 use Illuminate\Database\Seeder;
 
 
@@ -22,6 +23,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
         $this->call(PaymentRecordSeeder::class);
         $this->call(EmployeeSeeder::class);
+        $this->call(DiscountCouponSeeder::class);
         // \App\Models\User::factory(10)->create();
     }
 }

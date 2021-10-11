@@ -9,18 +9,20 @@ use App\Models\Type;
 class TypeController extends Controller
 {
     // แสดง Type ทั้งหมด
-    public function getAllTypes(){
+    public function getAllTypes()
+    {
         $type = Type::all();
-        
-        foreach ($type as $papa){
-           $papa['service_count'] = $papa->services()->count(); 
-           $papa['coupon_count'] = $papa->coupons()->count();
+
+        foreach ($type as $papa) {
+            $papa['service_count'] = $papa->services()->count();
+            $papa['coupon_count'] = $papa->coupons()->count();
         }
         return $type;
     }
 
     // get 1 type
-    public function getTypeAndService($id){
+    public function getTypeAndService($id)
+    {
         $type = Type::find($id);
         $type["services"] = $type->services;
         $type["employees"] = $type->employees($id)->get();
@@ -36,7 +38,8 @@ class TypeController extends Controller
     }
 
     // create type
-    public function createType(Request $request){
+    public function createType(Request $request)
+    {
         // validator
         $validator = Validator::make($request->all(), [
             'name' => 'required',
@@ -48,7 +51,7 @@ class TypeController extends Controller
             $errors = $validator->errors();
 
             return [
-                "status"=> "error", 
+                "status" => "error",
                 "error" => $errors
             ];
         } else {
@@ -56,71 +59,66 @@ class TypeController extends Controller
             $type->name = $request->name;
             $type->type_image_url = $request->type_image_url;
 
-            if ($type->save()){
+            if ($type->save()) {
                 return $type;
-            }else {
+            } else {
                 return
-                [
-                    "status"=> "error", 
-                    "error" => "สร้างไม่ได้"
-                ];
+                    [
+                        "status" => "error",
+                        "error" => "สร้างไม่ได้"
+                    ];
             }
         }
     }
 
-        // update, แก้ไข
-        public function update(Request $request, $id){
-            $type = Type::findOrFail($id);
-            $validator = Validator::make($request->all(), [
-                'name' => 'required',
-                'type_image_url' => 'required',
-            ]);
+    // update, แก้ไข
+    public function update(Request $request, $id)
+    {
+        $type = Type::findOrFail($id);
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'type_image_url' => 'required',
+        ]);
 
-            if ($validator->fails()) {
-                $errors = $validator->errors();
-    
-                return [
-                    "status"=> "error", 
-                    "error" => $errors
-                ];
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+
+            return [
+                "status" => "error",
+                "error" => $errors
+            ];
+        } else {
+            $type->name = $request->name;
+            $type->type_image_url = $request->type_image_url;
+
+            if ($type->save()) {
+                return $type;
             } else {
-                $type->name = $request->name;
-                $type->type_image_url = $request->type_image_url;
-    
-                if ($type->save()){
-                    return $type;
-                }else {
-                    return
+                return
                     [
-                        "status"=> "error", 
+                        "status" => "error",
                         "error" => "แก้ไขไม่ได้"
                     ];
-                }
-            }
-            
-
-
-        }
-
-        // delete
-        public function destroy(Request $request, $id)
-        {
-            $type = Type::findOrFail($id);
-            if ( $type->delete() ) {
-                return [ 
-                    "status"=> "success" 
-                ];
-            } else {
-                return [ 
-                    "status"=> "error", 
-                    "error" => "ลบไม่ได้"
-                ];
             }
         }
-
     }
 
+    // delete
+    public function destroy($id)
+    {
+        $type = Type::findOrFail($id);
+        $type->services()->delete();
+        $type->coupons()->delete();
 
-
-
-
+        if ($type->delete()) {
+            return [
+                "status" => "success"
+            ];
+        } else {
+            return [
+                "status" => "error",
+                "error" => "ลบไม่ได้"
+            ];
+        }
+    }
+}

@@ -94,8 +94,10 @@ class ServiceController extends Controller
     
             public function destroy(Request $request, $id)
             {
-                $service = Service::findOrFail($id);
+                $service = Service::findOrFail($id); 
+                $service->coupons()->delete();
                 if ( $service->delete() ) {
+                   
                     return [ 
                         "status"=> "success" 
                     ];

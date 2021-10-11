@@ -15,6 +15,10 @@ class CreateDiscountCouponsTable extends Migration
     {
         Schema::create('discount_coupons', function (Blueprint $table) {
             $table->id();
+            $table->longText('specific_code');
+            $table->integer('discount_percent');
+            $table->integer('minimum_cost');
+            $table->integer('quantity');
             $table->timestamps();
         });
     }
