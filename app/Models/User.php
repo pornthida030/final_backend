@@ -22,7 +22,7 @@ class User extends Authenticatable
         'username',
         'name'
     ];
-    
+
     public function user_coupons(){
         return $this->hasMany(UserCoupon::class);
     }
@@ -31,7 +31,9 @@ class User extends Authenticatable
         return $this->hasMany(Review::class);
     }
 
-
+    public function payment_records() {
+        return $this->hasMany(PaymentRecord::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.

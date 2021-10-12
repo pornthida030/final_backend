@@ -59,7 +59,7 @@ Route::middleware(['jwt.auth:ADMIN'])->prefix('coupon')->group(function(){
 // Coupon Controller
 Route::prefix('coupon')->group(function(){
     Route::get('/random', [App\Http\Controllers\CouponController::class, 'random']);
-    
+
 });
 
 // UserCoupon Controller
@@ -104,4 +104,8 @@ Route::middleware(['jwt.auth:ADMIN'])->prefix('discount_coupon')->group(function
     Route::post('/',[App\Http\Controllers\DiscountCouponController::class, 'create']);
     Route::put('/{id}',[App\Http\Controllers\DiscountCouponController::class, 'update']);
     Route::delete('/{id}',[App\Http\Controllers\DiscountCouponController::class, 'destory']);
+});
+
+Route::prefix('payment_record')->group(function(){
+    Route::get('/',[App\Http\Controllers\PaymentRecordController::class,'getPaymentRecords']);
 });
