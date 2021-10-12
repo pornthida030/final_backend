@@ -21,6 +21,7 @@ class CreateReviewsTable extends Migration
             $table->integer('score');
             $table->longText('review_detail');
             $table->timestamps();
+            $table->softDeletes();
         
         });
     }

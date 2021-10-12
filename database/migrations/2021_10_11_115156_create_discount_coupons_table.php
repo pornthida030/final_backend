@@ -20,6 +20,7 @@ class CreateDiscountCouponsTable extends Migration
             $table->integer('minimum_cost');
             $table->integer('quantity');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

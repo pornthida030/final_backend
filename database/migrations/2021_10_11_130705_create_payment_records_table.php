@@ -20,8 +20,10 @@ class CreatePaymentRecordsTable extends Migration
             $table->foreignIdFor(\App\Models\Coupon::class);
             // $table->item
             $table->integer('count');
-            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('updated_at');
+            $table->timestamps();
+            // $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            // $table->timestamp('updated_at');
+            $table->softDeletes();
         });
     }
 

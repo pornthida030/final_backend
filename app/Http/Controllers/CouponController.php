@@ -12,6 +12,7 @@ class CouponController extends Controller
     public function createCoupon(Request $request){
         // validator
         $validator = Validator::make($request->all(), [
+            'type_id' => 'required',
             'service_id' => 'required',
             'name' => 'required',
             'price' => 'required',
@@ -29,6 +30,7 @@ class CouponController extends Controller
             ];
         } else {
             $coupon = new Coupon();
+            $coupon->type_id = $request->type_id;
             $coupon->service_id = $request->service_id;
             $coupon->name = $request->name;
             $coupon->price = $request->price;

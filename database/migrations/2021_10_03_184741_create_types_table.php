@@ -18,6 +18,7 @@ class CreateTypesTable extends Migration
             $table->string('name');
             $table->longText('type_image_url');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

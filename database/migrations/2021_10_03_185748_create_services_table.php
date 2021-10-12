@@ -20,6 +20,7 @@ class CreateServicesTable extends Migration
             $table->longText('description');
             $table->longText('service_image_url');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

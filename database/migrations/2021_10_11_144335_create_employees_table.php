@@ -18,6 +18,7 @@ class CreateEmployeesTable extends Migration
             $table->foreignIdFor(\App\Models\User::class);
             $table->foreignIdFor(\App\Models\Type::class);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

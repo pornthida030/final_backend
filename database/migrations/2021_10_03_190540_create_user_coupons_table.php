@@ -26,6 +26,7 @@ class CreateUserCouponsTable extends Migration
             $table->boolean('reviewed')->default(false);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->nullable();
+            $table->softDeletes();
         });
     }
 

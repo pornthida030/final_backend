@@ -21,6 +21,7 @@ class CreateCouponsTable extends Migration
             $table->float('price');
             $table->integer('time');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
