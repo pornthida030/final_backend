@@ -26,4 +26,8 @@ class Service extends Model
     public function reviews(){
         return $this->hasMany(Review::class)->latest()->take(3);
     }
+
+    public function payment_record() {
+        return $this->hasMany(PaymentRecord::class);
+    }
 }

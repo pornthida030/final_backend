@@ -16,9 +16,12 @@ class CreatePaymentRecordsTable extends Migration
         Schema::create('payment_records', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(\App\Models\User::class);
+            $table->foreignIdFor(\App\Models\Service::class);
             $table->foreignIdFor(\App\Models\Coupon::class);
+            // $table->item
             $table->integer('count');
-            $table->timestamps();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at');
         });
     }
 

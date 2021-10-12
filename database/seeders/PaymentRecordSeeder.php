@@ -14,6 +14,25 @@ class PaymentRecordSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $payment_record = new PaymentRecord();
+        $payment_record->user_id = 2;
+        $payment_record->service_id = 1;
+        $payment_record->coupon_id = 1;
+        $payment_record->count = 2;
+        $payment_record->save();
+
+        $payment_record = new PaymentRecord();
+        $payment_record->user_id = 2;
+        $payment_record->service_id = 2;
+        $payment_record->coupon_id = 2;
+        $payment_record->count = 1;
+        $payment_record->save();
+
+        $payment_record = new PaymentRecord();
+        $payment_record->user_id = 2;
+        $payment_record->service_id = 1;
+        $payment_record->coupon_id = 3;
+        $payment_record->count = 1;
+        $payment_record->save();
     }
 }

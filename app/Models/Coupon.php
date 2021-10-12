@@ -12,7 +12,7 @@ class Coupon extends Model
     public function type(){
         return $this->belongTo(Type::class);
     }
-    
+
     public function service(){
         return $this->belongsTo(Service::class);
     }
@@ -23,5 +23,9 @@ class Coupon extends Model
 
     public function review(){
         return $this->hasMany(Review::class);
+    }
+
+    public function payment_record() {
+        return $this->hasMany(PaymentRecord::class);
     }
 }

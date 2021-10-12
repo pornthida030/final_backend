@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PaymentRecord;
+use App\Models\UserCoupon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class PaymentRecordController extends Controller
 {

@@ -106,6 +106,6 @@ Route::middleware(['jwt.auth:ADMIN'])->prefix('discount_coupon')->group(function
     Route::delete('/{id}',[App\Http\Controllers\DiscountCouponController::class, 'destory']);
 });
 
-Route::prefix('payment_record')->group(function(){
+Route::middleware(['jwt.auth:USER'])->prefix('payment_record')->group(function(){
     Route::get('/',[App\Http\Controllers\PaymentRecordController::class,'getPaymentRecords']);
 });
