@@ -88,6 +88,7 @@ class CouponController extends Controller
     public function destroy(Request $request, $id)
     {
         $coupon = Coupon::findOrFail($id);
+        $coupon->user_coupons()->delete();
         if ( $coupon->delete() ) {
             return [ 
                 "status"=> "success" 
