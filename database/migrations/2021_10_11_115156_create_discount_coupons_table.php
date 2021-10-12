@@ -15,7 +15,7 @@ class CreateDiscountCouponsTable extends Migration
     {
         Schema::create('discount_coupons', function (Blueprint $table) {
             $table->id();
-            $table->longText('specific_code');
+            $table->string('specific_code')->unique(); //ต้องเป็น string ถ้าเป็น long text จะทำ Unique ไม่ได้
             $table->integer('discount_percent');
             $table->integer('minimum_cost');
             $table->integer('quantity');

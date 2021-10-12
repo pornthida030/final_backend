@@ -9,33 +9,9 @@ use Illuminate\Support\Facades\Validator;
 class DiscountCouponController extends Controller
 {
     // ทำ crate, update, destory 
-    // public function check(Request $request){
-    //     $validator=Validator::make($request->all(),[
-    //         'specific_code'=>'required'
-    //     ]);
-    //     if($validator->fails()){
-    //         $errors=$validator->errors();
-    //         return [
-    //             "status"=>"error",
-    //             "error"=>$errors
-    //         ];
-    //     }
-    //     else{
-    //         $discountCoupons = DiscountCoupon::all();
-    //         foreach($discountCoupons as $discountCoupon){
-    //             if($discountCoupons[$discountCoupon]->specific_code===$request->specific_code){
-    //                 return [
-
-    //                 ];
-    //             }
-    //         }
-    //     }
-        
-        
-    // }
     public function create(Request $request){
         $validator=Validator::make($request->all(),[
-            'specific_code'=>'required',
+            'specific_code'=>'required|unique:discount_coupons',
             'discount_percent'=>'required',
             'minimum_cost'=>'required',
             'quantity' => 'required'
@@ -69,7 +45,7 @@ class DiscountCouponController extends Controller
     public function update(Request $request, $id){
         $discountCoupon = DiscountCoupon::findOrFail($id);
         $validator = Validator::make($request->all(), [
-            'specific_code' => 'required',
+            'specific_code' => 'required|unique:discount_coupons',
             'discount_percent' => 'required',
             'minimum_cost' => 'required',
             'quantity' => 'required'
@@ -118,5 +94,32 @@ class DiscountCouponController extends Controller
     public function getDiscountCoupon(){
         $discountCoupon = DiscountCoupon::get();
         return $discountCoupon;
+    }
+    
+    public function useDiscountCoupon(Request $request,$id){
+        $discountCoupon = DiscountCoupon::findOrFail($id);
+        $validator = Validator::make($request->all(), [
+            'quantity' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+
+            return [
+                "status"=> "error", 
+                "error" => $errors
+            ];
+        } else {
+            $discountCoupon->quantity=$request->quantity;
+            if ($discountCoupon->save()){
+                return $discountCoupon;
+            }else {
+                return
+                [
+                    "status"=> "error", 
+                    "error" => "แก้ไขไม่ได้"
+                ];
+            }
+        }
     }
 }
