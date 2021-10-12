@@ -101,9 +101,14 @@ class CouponController extends Controller
     // random function for Home page
     public function random()
     {
-        $coupon = Coupon::all()->random(4);    
+        $coupon = Coupon::all()->random(4);
+        foreach ($coupon as $ponpon) {
+            //pon pon wei wei wei pon pon wei pon wei pon pon
+            $ponpon['employee'] = $ponpon->type->employees(1)->get();
+            foreach ($ponpon['employee'] as $employee) {
+                $employee["name"] = $employee->user()->value('name');
+            }
+        }
         return $coupon;
-        // return $coupon;
-
     }
 }
