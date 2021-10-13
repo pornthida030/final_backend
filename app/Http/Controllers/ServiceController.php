@@ -79,7 +79,7 @@ class ServiceController extends Controller
                     $service->name = $request->name;
                     $service->description = $request->description;
                     $service->service_image_url = $request->service_image_url;
-
+                    
                     if ($service->save()){
                         return $service;
                     }else {

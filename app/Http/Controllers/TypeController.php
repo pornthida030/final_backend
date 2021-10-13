@@ -92,6 +92,8 @@ class TypeController extends Controller
             $type->type_image_url = $request->type_image_url;
 
             if ($type->save()) {
+                $type['service_count'] = $type->services()->count();
+                $type['coupon_count'] = $type->coupons()->count();
                 return $type;
             } else {
                 return

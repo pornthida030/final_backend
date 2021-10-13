@@ -45,9 +45,6 @@ class DiscountCouponController extends Controller
     public function update(Request $request, $id){
         $discountCoupon = DiscountCoupon::findOrFail($id);
         $validator = Validator::make($request->all(), [
-            'specific_code' => 'required|unique:discount_coupons',
-            'discount_percent' => 'required',
-            'minimum_cost' => 'required',
             'quantity' => 'required'
         ]);
 
@@ -59,9 +56,6 @@ class DiscountCouponController extends Controller
                 "error" => $errors
             ];
         } else {
-            $discountCoupon->specific_code = $request->specific_code;
-            $discountCoupon->discount_percent = $request->discount_percent;
-            $discountCoupon->minimum_cost = $request->minimum_cost;
             $discountCoupon->quantity=$request->quantity;
             if ($discountCoupon->save()){
                 return $discountCoupon;
