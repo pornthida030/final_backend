@@ -16,7 +16,7 @@ class DiscountCouponSeeder extends Seeder
     {
         //id 1
         $coupon = new DiscountCoupon();
-        $coupon->specific_code = "AT284nGA";
+        $coupon->specific_code = "OFF50";
         $coupon->discount_percent = 50;
         $coupon->minimum_cost = 500; 
         $coupon->quantity = 10;
@@ -24,7 +24,7 @@ class DiscountCouponSeeder extends Seeder
 
         //id 2
         $coupon = new DiscountCoupon();
-        $coupon->specific_code = "MP3884h88";
+        $coupon->specific_code = "OFF20";
         $coupon->discount_percent = 20;
         $coupon->minimum_cost = 200; 
         $coupon->quantity = 5;
@@ -44,6 +44,14 @@ class DiscountCouponSeeder extends Seeder
         $coupon->discount_percent = 10;
         $coupon->minimum_cost = 100; 
         $coupon->quantity = 2;
+        $coupon->save();
+
+        //id 5
+        $coupon = new DiscountCoupon();
+        $coupon->specific_code = "HALLOWEEN";
+        $coupon->discount_percent = 10;
+        $coupon->minimum_cost = 300; 
+        $coupon->quantity = 5;
         $coupon->save();
 
     }
