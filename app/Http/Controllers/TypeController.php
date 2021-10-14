@@ -16,6 +16,11 @@ class TypeController extends Controller
         foreach ($type as $papa) {
             $papa['service_count'] = $papa->services()->count();
             $papa['coupon_count'] = $papa->coupons()->count();
+            $papa['employees'] = $papa->employees($papa['id'])->get();
+            foreach ($papa['employees'] as $employ) {
+                $employ['name'] = $employ->user()->value('name');
+                $employ['username'] = $employ->user()->value('username');
+            }
         }
         return $type;
     }

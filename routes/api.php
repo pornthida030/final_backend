@@ -63,13 +63,13 @@ Route::prefix('coupon')->group(function(){
 });
 
 // UserCoupon Controller
-Route::middleware(['jwt.auth:ADMIN,USER'])->prefix('user_coupon')->group(function(){
+Route::middleware(['jwt.auth:ADMIN,USER,EMPLOYEE'])->prefix('user_coupon')->group(function(){
     Route::get('/', [\App\Http\Controllers\UserCouponController::class, 'getUserCoupon']);
     Route::post('/', [App\Http\Controllers\UserCouponController::class, 'addUserCoupon']);
 });
 
 // UserCoupon Controller for Admin
-Route::middleware(['jwt.auth:ADMIN'])->prefix('user_coupon')->group(function(){
+Route::middleware(['jwt.auth:ADMIN,EMPLOYEE'])->prefix('user_coupon')->group(function(){
     Route::put('/{id}',[App\Http\Controllers\UserCouponController::class, 'updateCouponStatus']);
     Route::delete('/{id}',[App\Http\Controllers\UserCouponController::class, 'destroy']);
 });
