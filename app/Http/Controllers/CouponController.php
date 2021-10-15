@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Coupon;
+
+use App\Models\UserCoupon;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class CouponController extends Controller
 {
-     // create coupon
-    public function createCoupon(Request $request){
+    // create coupon
+    public function createCoupon(Request $request)
+    {
         // validator
         $validator = Validator::make($request->all(), [
             'type_id' => 'required',
@@ -25,7 +28,7 @@ class CouponController extends Controller
             $errors = $validator->errors();
 
             return [
-                "status"=> "error", 
+                "status" => "error",
                 "error" => $errors
             ];
         } else {
@@ -36,20 +39,21 @@ class CouponController extends Controller
             $coupon->price = $request->price;
             $coupon->time = $request->time;
 
-            if ($coupon->save()){
+            if ($coupon->save()) {
                 return $coupon;
-            }else {
+            } else {
                 return
-                [
-                    "status"=> "error", 
-                    "error" => "สร้างไม่ได้"
-                ];
+                    [
+                        "status" => "error",
+                        "error" => "สร้างไม่ได้"
+                    ];
             }
         }
     }
 
     // update, แก้ไข
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
         $coupon = Coupon::findOrFail($id);
         $validator = Validator::make($request->all(), [
             'name' => 'required',
@@ -61,7 +65,7 @@ class CouponController extends Controller
             $errors = $validator->errors();
 
             return [
-                "status"=> "error", 
+                "status" => "error",
                 "error" => $errors
             ];
         } else {
@@ -69,35 +73,41 @@ class CouponController extends Controller
             $coupon->price = $request->price;
             $coupon->time = $request->time;
 
-            if ($coupon->save()){
+            if ($coupon->save()) {
                 return $coupon;
-            }else {
+            } else {
                 return
-                [
-                    "status"=> "error", 
-                    "error" => "แก้ไขไม่ได้"
-                ];
+                    [
+                        "status" => "error",
+                        "error" => "แก้ไขไม่ได้"
+                    ];
             }
         }
-        
-
-
     }
 
     // delete
     public function destroy(Request $request, $id)
     {
-        $coupon = Coupon::findOrFail($id);
-        $coupon->user_coupons()->delete();
-        if ( $coupon->delete() ) {
-            return [ 
-                "status"=> "success" 
+        $user_coupon = UserCoupon::where('coupon_id', '=', $id)->where('coupon_status', '=', 'unuse')->get();
+
+        if (count($user_coupon) > 0) {
+            return [
+                "status" => "error",
+                "error" => "ไม่สามารถลบได้ เพราะ มีลูกค้าซื้อคูปองไปแล้วยังไม่ได้ใช้งาน"
             ];
         } else {
-            return [ 
-                "status"=> "error", 
-                "error" => "ลบไม่ได้"
-            ];
+            $coupon = Coupon::findOrFail($id);
+            $coupon->user_coupons()->delete();
+            if ($coupon->delete()) {
+                return [
+                    "status" => "success"
+                ];
+            } else {
+                return [
+                    "status" => "error",
+                    "error" => "ลบไม่ได้"
+                ];
+            }
         }
     }
 
