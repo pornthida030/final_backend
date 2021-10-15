@@ -117,7 +117,7 @@ class CouponController extends Controller
         $coupon = Coupon::all()->random(4);
         foreach ($coupon as $ponpon) {
             //pon pon wei wei wei pon pon wei pon wei pon pon
-            $ponpon['employee'] = $ponpon->type->employees(1)->get();
+            $ponpon['employee'] = $ponpon->type->employees($ponpon['type_id'])->get();
             foreach ($ponpon['employee'] as $employee) {
                 $employee["name"] = $employee->user()->value('name');
             }
