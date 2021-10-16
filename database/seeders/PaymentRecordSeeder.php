@@ -14,12 +14,12 @@ class PaymentRecordSeeder extends Seeder
      */
     public function run()
     {
-        $payment_record = new PaymentRecord();
-        $payment_record->user_id = 2;
-        $payment_record->items = [
-            'name' => "ย้อมผม+กัดสีผม 1 รอบ"
-        ];
-        $payment_record->save();
+//        $payment_record = new PaymentRecord();
+//        $payment_record->user_id = 2;
+//        $payment_record->items = [
+//            'name' => "ย้อมผม+กัดสีผม 1 รอบ"
+//        ];
+//        $payment_record->save();
 
 //        $payment_record = new PaymentRecord();
 //        $payment_record->user_id = 2;

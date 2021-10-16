@@ -111,7 +111,7 @@ Route::middleware(['jwt.auth:ADMIN,USER'])->prefix('discount_coupon')->group(fun
     Route::put('/use/{id}',[App\Http\Controllers\DiscountCouponController::class,'useDiscountCoupon']);
 });
 
-Route::middleware(['jwt.auth:USER'])->prefix('payment_record')->group(function(){
+Route::prefix('payment_record')->group(function(){
     Route::get('/',[App\Http\Controllers\PaymentRecordController::class,'getPaymentRecords']);
     Route::post('/',[App\Http\Controllers\PaymentRecordController::class, 'create']);
 });
