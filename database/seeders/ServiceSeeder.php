@@ -14,59 +14,186 @@ class ServiceSeeder extends Seeder
      */
     public function run()
     {
-        //ซาลอน type id 1
+        // ซาลอน type id : 1
+
+
         // Service id 1
         $service = new Service();
         $service->type_id = 1;
-        $service->name = "ย้อมผม";
-        $service->description = "ย้อมผมสีสันสดใสด้วยผลิตภัณฑ์ธรรมชาติจากลุ่มแม่น้ำคงคา";
-        $service->service_image_url = "https://sudsapda.com/app/uploads/2016/08/grey01.jpg"; 
+        $service->name = "สระผม";
+        $service->description = "";
+        $service->service_image_url = "image_upload/hair-washhair.jpg";
         $service->save();
 
-        //ซาลอน type id 1
+
         // Service id 2
         $service = new Service();
         $service->type_id = 1;
         $service->name = "ตัดผม";
-        $service->description = "ตัดผมแบบพี่บอย เจ้าฮะ";
-        $service->service_image_url = "https://ath2.unileverservices.com/wp-content/uploads/sites/9/2018/10/how-to-get-the-best-haircut-for-you.jpg"; 
+        $service->description = "";
+        $service->service_image_url = "image_upload/hair-haircut.jpg";
         $service->save();
 
-        //นวด type id 2
         // Service id 3
         $service = new Service();
-        $service->type_id = 2;
-        $service->name = "นวดฝ่าเท้า";
-        $service->description = "นวดฝ่าเท้าแผนไทย";
-        $service->service_image_url = "https://res.cloudinary.com/dk0z4ums3/image/upload/v1623213008/attached_image_th/2279-foot-massage.jpg"; 
+        $service->type_id = 1;
+        $service->name = "ย้อมสีผม";
+        $service->description = "";
+        $service->service_image_url = "image_upload/hair-dyehair.jpg";
         $service->save();
 
-        //นวด type id 2
         // Service id 4
         $service = new Service();
-        $service->type_id = 2;
-        $service->name = "นวดหน้า";
-        $service->description = "นวดหน้าแบบดาราสาวพี่นู๋รัตน์";
-        $service->service_image_url = "https://static.posttoday.com/media/content/2015/10/21/95548CB1DB0D44B59323B49FF41CC759.jpg"; 
+        $service->type_id = 1;
+        $service->name = "ดัดผม";
+        $service->description = "";
+        $service->service_image_url = "image_upload/hair-curlhair.png";
         $service->save();
 
-        //ทำเล็บ type id 3
+
         // Service id 5
+        $service = new Service();
+        $service->type_id = 1;
+        $service->name = "ยืดผม";
+        $service->description = "";
+        $service->service_image_url = "image_upload/hair-straighten.jpg";
+        $service->save();
+
+        // บริการนวด type id : 2
+        // Service id 6
+        $service = new Service();
+        $service->type_id = 2;
+        $service->name = "บริการนวดไทย";
+        $service->description = "";
+        $service->service_image_url = "image_upload/massage-thai.jpg";
+        $service->save();
+
+        // Service id 7
+        $service = new Service();
+        $service->type_id = 2;
+        $service->name = "บริการนวดอโรม่า";
+        $service->description = "";
+        $service->service_image_url = "image_upload/massage-aroma.jpg";
+        $service->save();
+
+        // ทำเล็บ type id 3
+
+        // Service id 8
         $service = new Service();
         $service->type_id = 3;
         $service->name = "ทาเล็บเจล";
-        $service->description = "ทาเล็บเจลมือเท้า";
-        $service->service_image_url = "https://s.isanook.com/wo/0/rp/r/w728/ya0xa0m1w0/aHR0cHM6Ly9zLmlzYW5vb2suY29tL3dvLzAvdWQvMzIvMTYxNDk3L25haWwuanBn.jpg"; 
+        $service->description = "";
+        $service->service_image_url = "image_upload/nail-gel.jpg";
         $service->save();
 
-        //เลเซอร์ type id 4
-        // Service id 6
+        // Service id 9
+        $service = new Service();
+        $service->type_id = 3;
+        $service->name = "ตัดแต่งเล็บ";
+        $service->description = "";
+        $service->service_image_url = "image_upload/nail-cut.jpg";
+        $service->save();
+
+        // Service id 10
+        $service = new Service();
+        $service->type_id = 3;
+        $service->name = "ต่อเล็บ";
+        $service->description = "";
+        $service->service_image_url = "image_upload/nail-extension.jpg";
+        $service->save();
+
+
+        // บริการเสริมความงาม (botox, meso fat, filler) type id 4
+        // Service id 11
         $service = new Service();
         $service->type_id = 4;
-        $service->name = "เลเซอร์ใต้วงแขน";
-        $service->description = "เลเซอร์กำจัดขนแบบถอดรากถอนโคน";
-        $service->service_image_url = "https://www.doctorlifeclinic.com/application/views/uploads/article/20200212135001_img.jpg"; 
+        $service->name = "โบท็อกซ์";
+        $service->description = "";
+        $service->service_image_url = "image_upload/botox-botox.jpg";
         $service->save();
-        
+
+        // Service id 12
+        $service = new Service();
+        $service->type_id = 4;
+        $service->name = "เมโสแฟต";
+        $service->description = "";
+        $service->service_image_url = "image_upload/botox-fat.jpg";
+        $service->save();
+
+        // Service id 13
+        $service = new Service();
+        $service->type_id = 4;
+        $service->name = "ฟีลเลอร์";
+        $service->description = "";
+        $service->service_image_url = "image_upload/botox-filler.jpg";
+        $service->save();
+
+        // Service id 14
+        $service = new Service();
+        $service->type_id = 4;
+        $service->name = "ร้อยไหม";
+        $service->description = "";
+        $service->service_image_url = "image_upload/botox-lifting.jpg";
+        $service->save();
+
+        // Waxing type id 5
+        // Service id 15
+        $service = new Service();
+        $service->type_id = 5;
+        $service->name = "แว็กซ์ขนแขน ขา";
+        $service->description = "";
+        $service->service_image_url = "image_upload/wax-waxing.jpg";
+        $service->save();
+
+        // Service id 15
+        $service = new Service();
+        $service->type_id = 5;
+        $service->name = "แว็กซ์จุดซ่อนเร้น";
+        $service->description = "";
+        $service->service_image_url = "image_upload/wax-bikiniwax.jpg";
+        $service->save();
+
+        // Treatment type id 6
+        // Service id 16
+        $service = new Service();
+        $service->type_id = 5;
+        $service->name = "บริการมาร์ก";
+        $service->description = "";
+        $service->service_image_url = "image_upload/treatment-mask.jpg";
+        $service->save();
+
+        // Service id 17
+        $service = new Service();
+        $service->type_id = 5;
+        $service->name = "บริการนวดใบหน้า";
+        $service->description = "";
+        $service->service_image_url = "image_upload/treatment-massageface.jpg";
+        $service->save();
+
+        // Treatment type id 7
+        // Service id 18
+        $service = new Service();
+        $service->type_id = 5;
+        $service->name = "เสริมจมูก";
+        $service->description = "";
+        $service->service_image_url = "image_upload/surgery-nose.jpg";
+        $service->save();
+
+        // Service id 19
+        $service = new Service();
+        $service->type_id = 5;
+        $service->name = "เสริมคาง";
+        $service->description = "";
+        $service->service_image_url = "image_upload/surgery-chin.jpg";
+        $service->save();
+
+
+        // Service id 20
+        $service = new Service();
+        $service->type_id = 5;
+        $service->name = "ทำตาสองชั้น";
+        $service->description = "";
+        $service->service_image_url = "image_upload/surgery-chin.jpg";
+        $service->save();
     }
 }
