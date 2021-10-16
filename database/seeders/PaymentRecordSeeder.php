@@ -14,12 +14,29 @@ class PaymentRecordSeeder extends Seeder
      */
     public function run()
     {
-//        $payment_record = new PaymentRecord();
-//        $payment_record->user_id = 2;
-//        $payment_record->items = [
-//            'name' => "ย้อมผม+กัดสีผม 1 รอบ"
-//        ];
-//        $payment_record->save();
+        $payment_record = new PaymentRecord();
+        $payment_record->user_id = 2;
+        $payment_record->items = [
+            [
+                'name' => "ย้อมผม+กัดสีผม 1 รอบ",
+                'date' => "10-10-2021"
+            ]
+        ];
+        $payment_record->save();
+
+        $payment_record = new PaymentRecord();
+        $payment_record->user_id = 2;
+        $payment_record->items = [
+            [
+                'name' => "ย้อมผม+กัดสีผม ด้วยผลิตภัณฑ์ออแกนิก",
+                'date' => "11-10-2021"
+            ],
+            [
+                'name' => "ย้อมผม+กัดสีผม 1 รอบ",
+                'date' => "11-10-2021"
+            ]
+        ];
+        $payment_record->save();
 
 //        $payment_record = new PaymentRecord();
 //        $payment_record->user_id = 2;
