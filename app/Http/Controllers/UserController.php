@@ -37,6 +37,7 @@ class UserController extends Controller
         foreach ($user['user_coupon'] as $zaza){
             $zaza['service'] = $zaza->service;
             $zaza['coupon'] = $zaza->coupon;
+            $zaza['employee'] = $zaza->employee;
         }
 
         return $user;
