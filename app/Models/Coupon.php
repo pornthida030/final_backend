@@ -25,7 +25,7 @@ class Coupon extends Model
         return $this->hasMany(Review::class);
     }
 
-    public function payment_record() {
-        return $this->hasMany(PaymentRecord::class);
-    }
+//    public function payment_record() {
+//        return $this->hasMany(PaymentRecord::class);
+//    }
 }

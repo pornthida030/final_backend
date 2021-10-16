@@ -10,17 +10,21 @@ class PaymentRecord extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'items' => 'array'
+    ];
+
     public function user() {
         return $this->belongsTo(User::class);
     }
 
-    public function coupon() {
-        return $this->belongsTo(Coupon::class);
-    }
-
-    public function service() {
-        return $this->belongsTo(Service::class);
-    }
+//    public function coupon() {
+//        return $this->belongsTo(Coupon::class);
+//    }
+//
+//    public function service() {
+//        return $this->belongsTo(Service::class);
+//    }
 
     protected function serializeDate(DateTimeInterface $date)
     {
