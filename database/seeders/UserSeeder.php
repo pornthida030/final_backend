@@ -57,8 +57,24 @@ class UserSeeder extends Seeder
         $user->password = Hash::make("password");
         $user->save();
 
-        // Employee for test
         // user id 6
+        $user = new User();
+        $user->role = "USER";
+        $user->name = "User4";
+        $user->username = "user4";
+        $user->password = Hash::make("password");
+        $user->save();
+
+        // user id 7
+        $user = new User();
+        $user->role = "USER";
+        $user->name = "User5";
+        $user->username = "user5";
+        $user->password = Hash::make("password");
+        $user->save();
+
+        // Employee for test
+        // user id 8
         $user = new User();
         $user->role = "EMPLOYEE";
         $user->name = "ช่างมะนาว";
@@ -66,7 +82,7 @@ class UserSeeder extends Seeder
         $user->password = Hash::make("password");
         $user->save();
 
-        // user id 7
+        // user id 9
         $user = new User();
         $user->role = "EMPLOYEE";
         $user->name = "ช่างหยก";
@@ -75,7 +91,7 @@ class UserSeeder extends Seeder
         $user->save();
 
 
-        // user id 8
+        // user id 10
         $user = new User();
         $user->role = "EMPLOYEE";
         $user->name = "ช่างเฟิร์ส";
@@ -84,7 +100,7 @@ class UserSeeder extends Seeder
         $user->save();
 
 
-        // user id 9
+        // user id 11
         $user = new User();
         $user->role = "EMPLOYEE";
         $user->name = "ช่างตาต้า";
@@ -93,7 +109,7 @@ class UserSeeder extends Seeder
         $user->save();
 
 
-        // user id 10
+        // user id 12
         $user = new User();
         $user->role = "EMPLOYEE";
         $user->name = "ช่างมุก";
