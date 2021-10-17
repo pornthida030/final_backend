@@ -17,9 +17,9 @@ class CreateUserCouponsTable extends Migration
         Schema::create('user_coupons', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->foreignIdFor(\App\Models\Service::class); // service_id
-            $table->foreignIdFor(\App\Models\Coupon::class); // coupon_owner (id)
+            $table->foreignIdFor(\App\Models\Coupon::class); // coupon (id)
             $table->foreignIdFor(\App\Models\User::class); // user_id
-            $table->integer('employee_id');
+            $table->foreignIdFor(\App\Models\Employee::class); // employee
             $table->enum('coupon_status', ["unuse", "used"])->default("unuse");
 
             // review
