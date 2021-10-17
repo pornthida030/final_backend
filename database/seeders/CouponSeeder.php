@@ -182,98 +182,200 @@ class CouponSeeder extends Seeder
         // type id 4 : บริการเสริมความงาม
         // service id 11 : โบท็อกซ์
         // coupon id 17
-        
+        $coupon = new Coupon();
+        $coupon->type_id = 4;
+        $coupon->service_id = 11;
+        $coupon->name = "โบท็อกซ์ 20 ยูนิต";
+        $coupon->price = 2000;
+        $coupon->time = 20; 
+        $coupon->save();
+
+        // coupon id 18
+        $coupon = new Coupon();
+        $coupon->type_id = 4;
+        $coupon->service_id = 11;
+        $coupon->name = "โบท็อกซ์ 100 ยูนิต";
+        $coupon->price = 6000;
+        $coupon->time = 55; 
+        $coupon->save();
+
 
         // type id 4 : บริการเสริมความงาม
         // service id 12 : เมโสแฟต
-        // coupon id 
+        // coupon id 19
+        $coupon = new Coupon();
+        $coupon->type_id = 4;
+        $coupon->service_id = 12;
+        $coupon->name = "เมโสแฟต 10 cc";
+        $coupon->price = 990;
+        $coupon->time = 30; 
+        $coupon->save();
+
+        // coupon id 20
+        $coupon = new Coupon();
+        $coupon->type_id = 4;
+        $coupon->service_id = 12;
+        $coupon->name = "เมโสแฟต 20 cc";
+        $coupon->price = 2000;
+        $coupon->time = 60; 
+        $coupon->save();
         
         // type id 4 : บริการเสริมความงาม
         // service id 13 : ฟิลเลอร์
-        // coupon id 
+        // coupon id 21
+        $coupon = new Coupon();
+        $coupon->type_id = 4;
+        $coupon->service_id = 13;
+        $coupon->name = "ฟิลเลอร์";
+        $coupon->price = 2000;
+        $coupon->time = 60; 
+        $coupon->save();
 
 
         // type id 4 : บริการเสริมความงาม
         // service id 14 : ร้อยไหม
-        // coupon id 
+        // coupon id 22
+        $coupon = new Coupon();
+        $coupon->type_id = 4;
+        $coupon->service_id = 14;
+        $coupon->name = "ร้อยไหมกระชับใบหน้า";
+        $coupon->price = 5000;
+        $coupon->time = 120; 
+        $coupon->save();
 
 
         // type id 5 : แว็กซ์
         // service id 15 : แว็กซ์แขน ขา
-        // coupon id 
+        // coupon id 23
+        $coupon = new Coupon();
+        $coupon->type_id = 5;
+        $coupon->service_id = 15;
+        $coupon->name = "แว็กซ์แขน + ขา";
+        $coupon->price = 800;
+        $coupon->time = 60; 
+        $coupon->save();
+
+        // coupon id 24
+        $coupon = new Coupon();
+        $coupon->type_id = 5;
+        $coupon->service_id = 15;
+        $coupon->name = "แว็กซ์แขน";
+        $coupon->price = 300;
+        $coupon->time = 30; 
+        $coupon->save();
+
+        // coupon id 25
+        $coupon = new Coupon();
+        $coupon->type_id = 5;
+        $coupon->service_id = 15;
+        $coupon->name = "แว็กซ์ขา";
+        $coupon->price = 500;
+        $coupon->time = 30; 
+        $coupon->save();
 
 
         // type id 5 : แว็กซ์
         // service id 16 : แว็กซ์จุดซ่อนเร้น
-        // coupon id 
+        // coupon id 26
+        $coupon = new Coupon();
+        $coupon->type_id = 5;
+        $coupon->service_id = 16;
+        $coupon->name = "Bikini Line Waxing";
+        $coupon->price = 500;
+        $coupon->time = 45; 
+        $coupon->save();
 
+         // coupon id 27
+         $coupon = new Coupon();
+         $coupon->type_id = 5;
+         $coupon->service_id = 16;
+         $coupon->name = "Triangle Waxing";
+         $coupon->price = 800;
+         $coupon->time = 45; 
+         $coupon->save();
+
+         // coupon id 28
+         $coupon = new Coupon();
+         $coupon->type_id = 5;
+         $coupon->service_id = 16;
+         $coupon->name = "Brazilian Waxing";
+         $coupon->price = 1000;
+         $coupon->time = 60; 
+         $coupon->save();
 
         // type id 6 : ทรีทเมนต์ (แก้คำด้วย)
         // service id 17 : มาร์ก
-        // coupon id 
+        // coupon id 29
+        $coupon = new Coupon();
+        $coupon->type_id = 6;
+        $coupon->service_id = 17;
+        $coupon->name = "มาร์กหน้าด้วยโคลนภูเขาไฟบ้านยาง";
+        $coupon->price = 600;
+        $coupon->time = 90; 
+        $coupon->save();
 
 
         // type id 6 : ทรีทเมนต์
         // service id 18 : นวดใบหน้า
-        // coupon id 
+        // coupon id 30
+        $coupon = new Coupon();
+        $coupon->type_id = 6;
+        $coupon->service_id = 18;
+        $coupon->name = "นวดใบหน้า + ลำคอ";
+        $coupon->price = 500;
+        $coupon->time = 60; 
+        $coupon->save();
 
 
         // type id 7 : ศัลยกรรมเฉพาะทาง
         // service id 19 : เสริมจมูก
-        // coupon id 
+        // coupon id 31
+        $coupon = new Coupon();
+        $coupon->type_id = 7;
+        $coupon->service_id = 19;
+        $coupon->name = "เสริมจมูก ด้วยซิลิโคนเกรด Standard";
+        $coupon->price = 18000;
+        $coupon->time = 120; 
+        $coupon->save();
+
+        // coupon id 32
+        $coupon = new Coupon();
+        $coupon->type_id = 7;
+        $coupon->service_id = 19;
+        $coupon->name = "เสริมจมูก ด้วยซิลิโคนเกรด Premium";
+        $coupon->price = 20000;
+        $coupon->time = 120; 
+        $coupon->save();
+
+        // coupon id 33
+        $coupon = new Coupon();
+        $coupon->type_id = 7;
+        $coupon->service_id = 19;
+        $coupon->name = "เสริมจมูก ด้วยซิลิโคนเกรด Untra Premium";
+        $coupon->price = 25000;
+        $coupon->time = 120; 
+        $coupon->save();
 
         // type id 7 : ศัลยกรรมเฉพาะทาง
         // service id 20 : เสริมคาง
-        // coupon id 
+        // coupon id 34
+        $coupon = new Coupon();
+        $coupon->type_id = 7;
+        $coupon->service_id = 20;
+        $coupon->name = "เสริมคางปรับโหวงเฮ้ง";
+        $coupon->price = 25000;
+        $coupon->time = 120; 
+        $coupon->save();
 
         // type id 7 : ศัลยกรรมเฉพาะทาง
         // service id 21 : ทำตาสองชั้น
-        // coupon id 
-
-
-
-
-        //บึ้มมมมมมมมมมมมมมมมมมมมมมม
-        // นวดหน้า service id 4
-        // coupon id 6
-        // $coupon = new Coupon();
-        // $coupon->type_id = 2;
-        // $coupon->service_id = 4;
-        // $coupon->name = "นวดหน้าด้วยน้ำมันมะพร้าว";
-        // $coupon->price = 900;
-        // $coupon->time = 45; 
-        // $coupon->save();
-
-        // $coupon = new Coupon();
-        // $coupon->type_id = 1;
-        // $coupon->service_id = 1;
-        // $coupon->name = "ย้อมผม+กัดสีผม 1 รอบ";
-        // $coupon->price = 500;
-        // $coupon->time = 100; 
-        // $coupon->save();
-
-        // $coupon = new Coupon();
-        // $coupon->type_id = 1;
-        // $coupon->service_id = 1;
-        // $coupon->name = "ย้อมผม+กัดสีผม 1 รอบ";
-        // $coupon->price = 500;
-        // $coupon->time = 100; 
-        // $coupon->save();
-
-        // $coupon = new Coupon();
-        // $coupon->type_id = 1;
-        // $coupon->service_id = 1;
-        // $coupon->name = "ย้อมผม+กัดสีผม 1 รอบ";
-        // $coupon->price = 500;
-        // $coupon->time = 100; 
-        // $coupon->save();
-
-        
-
-
-
-        
-
-
+        // coupon id 35
+        $coupon = new Coupon();
+        $coupon->type_id = 7;
+        $coupon->service_id = 21;
+        $coupon->name = "ทำตาสองชั้น";
+        $coupon->price = 30000;
+        $coupon->time = 120; 
+        $coupon->save();
     }
 }
