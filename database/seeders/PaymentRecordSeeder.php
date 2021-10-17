@@ -19,10 +19,11 @@ class PaymentRecordSeeder extends Seeder
         $payment_record->user_id = 3;
         $payment_record->items = [
             [
-                'name' => "ย้อมผม+กัดสีผม 1 รอบ",
-                'date' => "10-10-2021"
+                'name' => "ย้อมผม+กัดสีผม",
+                'date' => "11-10-2021"
             ]
         ];
+        $payment_record->totalPrice = 2000;
         $payment_record->save();
 
         // user1, user_id = 3
@@ -30,14 +31,15 @@ class PaymentRecordSeeder extends Seeder
         $payment_record->user_id = 3;
         $payment_record->items = [
             [
-                'name' => "ย้อมผม+กัดสีผม ด้วยผลิตภัณฑ์ออแกนิก",
-                'date' => "11-10-2021"
+                'name' => "ย้อมผม+ทำไฮไลท์",
+                'date' => "10-10-2021"
             ],
             [
-                'name' => "ย้อมผม+กัดสีผม 1 รอบ",
-                'date' => "11-10-2021"
+                'name' => "ย้อมผม+กัดสีผม",
+                'date' => "10-10-2021"
             ]
         ];
+        $payment_record->totalPrice = 2800;
         $payment_record->save();
 
         // user2, user_id = 4
@@ -45,14 +47,11 @@ class PaymentRecordSeeder extends Seeder
         $payment_record->user_id = 4;
         $payment_record->items = [
             [
-                'name' => "ย้อมผม+กัดสีผม ด้วยผลิตภัณฑ์ออแกนิก",
-                'date' => "9-10-2021"
-            ],
-            [
-                'name' => "ย้อมผม+กัดสีผม 1 รอบ",
-                'date' => "9-10-2021"
+                'name' => "นวดฝ่าเท้าด้วยน้ำมันมวย",
+                'date' => "11-10-2021"
             ]
         ];
+        $payment_record->totalPrice = 100;
         $payment_record->save();
 
         // user2, user_id = 4
@@ -61,13 +60,14 @@ class PaymentRecordSeeder extends Seeder
         $payment_record->items = [
             [
                 'name' => "นวดแผนไทย",
-                'date' => "11-10-2021"
+                'date' => "10-10-2021"
             ],
             [
                 'name' => "นวดฝ่าเท้าด้วยน้ำมันมวย",
-                'date' => "11-10-2021"
+                'date' => "10-10-2021"
             ]
         ];
+        $payment_record->totalPrice = 600;
         $payment_record->save();
 
         // user3, user_id = 5
@@ -79,6 +79,7 @@ class PaymentRecordSeeder extends Seeder
                 'date' => "8-10-2021"
             ]
         ];
+        $payment_record->totalPrice = 500;
         $payment_record->save();
 
         // user4, user_id = 6
@@ -87,13 +88,14 @@ class PaymentRecordSeeder extends Seeder
         $payment_record->items = [
             [
                 'name' => "ย้อมผม+กัดสีผม",
-                'date' => "8-10-2021"
+                'date' => "9-10-2021"
             ],
             [
-                'name' => "ดัดผมดิจิตอล",
-                'date' => "8-10-2021"
+                'name' => "ดัดผมแบบยูนาบี",
+                'date' => "9-10-2021"
             ]
         ];
+        $payment_record->totalPrice = 3000;
         $payment_record->save();
 
         // user4, user_id = 6
@@ -102,9 +104,11 @@ class PaymentRecordSeeder extends Seeder
         $payment_record->items = [
             [
                 'name' => "นวดแผนไทย",
-                'date' => "9-10-2021"
+                'date' => "8-10-2021",
+
             ]
         ];
+        $payment_record->totalPrice = 500;
         $payment_record->save();
 
         // user5, user_id = 7
@@ -116,6 +120,7 @@ class PaymentRecordSeeder extends Seeder
                 'date' => "9-10-2021"
             ]
         ];
+        $payment_record->totalPrice = 4000;
         $payment_record->save();
 
     }
