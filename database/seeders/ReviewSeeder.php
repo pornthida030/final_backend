@@ -43,7 +43,7 @@ class ReviewSeeder extends Seeder
         $review->service_id= 2;
         $review->user_id = 3;
         $review->coupon_id = 3;
-        $review->review_detail = "สีผมโดนใจมากค่ะ บริการดีมากเลยค่ะ";
+        $review->review_detail = "โดนใจมากค่ะ บริการดีมากเลยค่ะ";
         $review->score = 5;
         $review->save();  
 
