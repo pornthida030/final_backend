@@ -145,7 +145,7 @@ class ServiceSeeder extends Seeder
         $service->service_image_url = "image_upload/wax-waxing.jpg";
         $service->save();
 
-        // Service id 15
+        // Service id 16
         $service = new Service();
         $service->type_id = 5;
         $service->name = "แว็กซ์จุดซ่อนเร้น";
@@ -154,7 +154,7 @@ class ServiceSeeder extends Seeder
         $service->save();
 
         // Treatment type id 6
-        // Service id 16
+        // Service id 17
         $service = new Service();
         $service->type_id = 6;
         $service->name = "บริการมาร์ก";
@@ -162,7 +162,7 @@ class ServiceSeeder extends Seeder
         $service->service_image_url = "image_upload/treatment-mask.jpg";
         $service->save();
 
-        // Service id 17
+        // Service id 18
         $service = new Service();
         $service->type_id = 6;
         $service->name = "บริการนวดใบหน้า";
@@ -171,7 +171,7 @@ class ServiceSeeder extends Seeder
         $service->save();
 
         // ศัลยกรรม type id 7
-        // Service id 18
+        // Service id 19
         $service = new Service();
         $service->type_id = 7;
         $service->name = "เสริมจมูก";
@@ -179,7 +179,7 @@ class ServiceSeeder extends Seeder
         $service->service_image_url = "image_upload/surgery-nose.jpg";
         $service->save();
 
-        // Service id 19
+        // Service id 20
         $service = new Service();
         $service->type_id = 7;
         $service->name = "เสริมคาง";
@@ -188,7 +188,7 @@ class ServiceSeeder extends Seeder
         $service->save();
 
 
-        // Service id 20
+        // Service id 21
         $service = new Service();
         $service->type_id = 7;
         $service->name = "ทำตาสองชั้น";
