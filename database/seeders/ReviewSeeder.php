@@ -26,10 +26,10 @@ class ReviewSeeder extends Seeder
         $review->save();    
 
         //coupon id 6
-        //service id 1
+        //service id 3
         //review id 2
         $review = new Review();
-        $review->service_id= 1;
+        $review->service_id= 3;
         $review->user_id = 4;
         $review->coupon_id = 6;
         $review->review_detail = "พนักงานบริการดีค่ะ แต่รอนานไปหน่อย";
@@ -37,10 +37,10 @@ class ReviewSeeder extends Seeder
         $review->save();  
 
         //coupon id 3
-        //service id 1
+        //service id 2
         //review id 3
         $review = new Review();
-        $review->service_id= 1;
+        $review->service_id= 2;
         $review->user_id = 3;
         $review->coupon_id = 3;
         $review->review_detail = "สีผมโดนใจมากค่ะ บริการดีมากเลยค่ะ";

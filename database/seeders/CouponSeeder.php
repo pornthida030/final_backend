@@ -351,7 +351,7 @@ class CouponSeeder extends Seeder
         $coupon = new Coupon();
         $coupon->type_id = 7;
         $coupon->service_id = 19;
-        $coupon->name = "เสริมจมูก ด้วยซิลิโคนเกรด Untra Premium";
+        $coupon->name = "เสริมจมูก ด้วยซิลิโคนเกรด Ultra Premium";
         $coupon->price = 25000;
         $coupon->time = 120; 
         $coupon->save();
