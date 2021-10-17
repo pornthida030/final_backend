@@ -85,9 +85,17 @@ class DiscountCouponController extends Controller
 
     }
 
-    public function getDiscountCoupon(){
-        $discountCoupon = DiscountCoupon::get();
-        return $discountCoupon;
+    public function checkDiscountCoupon($discount){
+        $discountCoupon = DiscountCoupon::where('specific_code','=', $discount)->where('quantity','>','0')->first();
+
+        if($discountCoupon){
+            return $discountCoupon;
+        }else{
+            return [
+                "status"=> "error", 
+                "error" => "ไม่พบคูปองที่ท่านต้องการ หรือ คูปองอาจจะหมดแล้ว"
+            ];
+        }
     }
     
     public function useDiscountCoupon(Request $request,$id){

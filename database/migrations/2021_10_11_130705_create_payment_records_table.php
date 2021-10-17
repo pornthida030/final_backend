@@ -18,6 +18,7 @@ class CreatePaymentRecordsTable extends Migration
             $table->foreignIdFor(\App\Models\User::class);
             $table->text('items');
             $table->float('totalPrice')->default(0.00);
+            $table->text('discount_coupon')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

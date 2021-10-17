@@ -6,6 +6,7 @@ use Firebase\JWT\JWT;
 use App\Models\PaymentRecord;
 use App\Models\User;
 use App\Models\UserCoupon;
+use App\Models\DiscountCoupon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -91,10 +92,30 @@ class PaymentRecordController extends Controller
                 ]);
             }
 
+            if($request->discount_coupon){
+                $discountCoupon = DiscountCoupon::where('specific_code','=', $request->discount_coupon)->where('quantity','>','0')->first();
+
+                if(empty($discountCoupon)){
+                    return
+                    [
+                        "status" => "error",
+                        "error" => "ไม่สามารถทำการชำระเงินได้เนื่องจากไม่พบคูปอง หรือว่าคูปองนั้นได้หมดไปแล้ว"
+                    ];
+                }
+
+                $totalPrice = $totalPrice - (($totalPrice * $discountCoupon['discount_percent']) / 100);
+                $discountCoupon->quantity = $discountCoupon->quantity - 1;
+                $discountCoupon->save();
+            }
+
             $payment_record = new PaymentRecord();
             $payment_record->user_id = $user->id;
             $payment_record->items = $items;
             $payment_record->totalPrice = $totalPrice;
+
+            if($request->discount_coupon){
+                $payment_record->discount_coupon = $request->discount_coupon;
+            }
             
             if ($payment_record->save()) {
                 return $payment_record;

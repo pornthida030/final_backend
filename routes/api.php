@@ -107,8 +107,7 @@ Route::middleware(['jwt.auth:ADMIN'])->prefix('discount_coupon')->group(function
 });
 
 Route::middleware(['jwt.auth:ADMIN,USER'])->prefix('discount_coupon')->group(function() {
-    Route::get('/',[App\Http\Controllers\DiscountCouponController::class, 'getDiscountCoupon']);
-    Route::put('/use/{id}',[App\Http\Controllers\DiscountCouponController::class,'useDiscountCoupon']);
+    Route::get('/{discount}',[App\Http\Controllers\DiscountCouponController::class, 'checkDiscountCoupon']);
 });
 
 Route::middleware(['jwt.auth:USER'])->prefix('payment_record')->group(function(){
