@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -13,7 +14,7 @@ class EmployeeController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'type_id' => 'required',
-            'user_id' => 'required',
+            'username' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -24,9 +25,36 @@ class EmployeeController extends Controller
                 "error" => $errors
             ];
         } else {
+
+            $user = User::where('username', '=', $request->username)->first();
+
+            if (empty($user)){
+                return
+                [
+                    "status"=> "error", 
+                    "error" => "ไม่พบท่านนี้ในระบบ"
+                ];
+            }
+
+            if(Employee::where('type_id', '=', $request->type_id)->where('user_id', '=', $user['id'])->first()){
+                return
+                [
+                    "status"=> "error", 
+                    "error" => "มีพนักงานท่านนี้อยู่แล้ว"
+                ];
+            }
+
+            if ($user['role'] == "USER") {
+                return
+                [
+                    "status"=> "error", 
+                    "error" => "ท่านนี้ไม่ใช่พนักงาน"
+                ];
+            }
+            
             $employee = new Employee();
             $employee->type_id = $request->type_id;
-            $employee->user_id = $request->user_id;
+            $employee->user_id = $user['id'];
 
             if ($employee->save()){
                 return $employee;
