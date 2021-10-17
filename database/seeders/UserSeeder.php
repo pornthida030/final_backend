@@ -20,15 +20,15 @@ class UserSeeder extends Seeder
         $user = new User();
         $user->role = "ADMIN";
         $user->name = "Admin1";
-        $user->username = "admin";
+        $user->username = "admin1";
         $user->password = Hash::make("password");
         $user->save();
 
         // user id 2
         $user = new User();
         $user->role = "ADMIN";
-        $user->name = "Admin1";
-        $user->username = "admin";
+        $user->name = "Admin2";
+        $user->username = "admin2";
         $user->password = Hash::make("password");
         $user->save();
 
