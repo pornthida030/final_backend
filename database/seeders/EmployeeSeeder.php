@@ -16,10 +16,6 @@ class EmployeeSeeder extends Seeder
     {
         // type 1
         // employee 1
-        $employee = new Employee();
-        $employee->type_id = 1;
-        $employee->user_id = 1;
-        $employee->save();
 
         // employee 2
         $employee = new Employee();

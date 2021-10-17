@@ -44,7 +44,7 @@ class EmployeeController extends Controller
                 ];
             }
 
-            if ($user['role'] == "USER") {
+            if ($user['role'] == "USER" || $user['role'] == "ADMIN") {
                 return
                 [
                     "status"=> "error", 
