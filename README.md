@@ -23,17 +23,25 @@ cp .env.example .env
 
 ## 5. Edit .env file
 ```
+JWT_SECRET= your secret key
+JWT_EXPIRE_HOUR= token key expire time
+
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE= your database name
+DB_DATABASE= your database name same as 4.
 DB_USERNAME= your username
 DB_PASSWORD= your password
 ```
 
-## 6.Seed data and Migrate Table
+## 6.Generate App Key
 ```
-php artisan migrate --seed
+php artisan key:generate
+```
+
+## 7.Seed data and Migrate Table
+```
+php artisan migrate:fresh --seed
 ```
 ## 7.Run project
 ```
