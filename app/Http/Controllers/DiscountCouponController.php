@@ -124,4 +124,9 @@ class DiscountCouponController extends Controller
             }
         }
     }
+
+    public function getAll(){
+        $discountCoupon= DiscountCoupon::get();
+        return $discountCoupon;
+    }
 }
