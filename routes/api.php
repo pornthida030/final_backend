@@ -104,6 +104,7 @@ Route::middleware(['jwt.auth:ADMIN'])->prefix('discount_coupon')->group(function
     Route::post('/',[App\Http\Controllers\DiscountCouponController::class, 'create']);
     Route::put('/{id}',[App\Http\Controllers\DiscountCouponController::class, 'update']);
     Route::delete('/{id}',[App\Http\Controllers\DiscountCouponController::class, 'destory']);
+    Route::get('/',[App\Http\Controllers\DiscountCouponController::class, 'getAll']);
 });
 
 Route::middleware(['jwt.auth:ADMIN,USER'])->prefix('discount_coupon')->group(function() {
