@@ -167,7 +167,7 @@ class ServiceSeeder extends Seeder
         $service->type_id = 6;
         $service->name = "บริการนวดใบหน้า";
         $service->description = "บริการนวดใบหน้าด้วยหินกัวซาจากแบรนด์ดัง ทำให้หน้าเรียว ยกกระชับเต่งตึง ทำให้ระบบหมุนเวียนเลือดดีขึ้นและทำให้ลูกค้ารู้สึกผ่อนคลาย";
-        $service->service_image_url = "image_upload/treatment-massageface.jpg";
+        $service->service_image_url = "image_upload/treatment-massageface.jpeg";
         $service->save();
 
         // ศัลยกรรม type id 7
