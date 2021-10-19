@@ -2,6 +2,13 @@
 
 ส่วนของ Frontend URL: https://github.com/thefirstblair/final_frontend.git
 
+## Member Webtech
+1. 6210401252 พงศ์พล โรจนอดิศร
+2. 6210450075 ธันยธรณ์ ไกรกาญจน์
+3. 6210450539 ญาณกร จารุเดชศิริ
+4. 6210451179 ณิชธิตรา เมฆาพงศ์พันธุ์
+5. 6210451314 พรธิดา สุขสรรควณิช
+
 # Project setup
 
 ## 1.Clone Project
