@@ -31,7 +31,7 @@ class User extends Authenticatable
         return $this->hasMany(Review::class);
     }
 
-    public function payment_record() {
+    public function payment_records() {
         return $this->hasMany(PaymentRecord::class);
     }
 

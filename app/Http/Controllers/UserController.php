@@ -155,9 +155,14 @@ class UserController extends Controller
         }
     }
     // delete
-    public function destroy(Request $request, $id)
+    public function destroy($id)
     {
         $user = User::findOrFail($id);
+
+        $user->reviews()->delete();
+        $user->user_coupons()->delete();
+        $user->payment_records()->delete();
+
         if ($user->delete()) {
             return [
                 "status" => "success"
