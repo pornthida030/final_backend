@@ -39,6 +39,12 @@ DB_PORT=3306
 DB_DATABASE= your database name same as 4.
 DB_USERNAME= your username
 DB_PASSWORD= your password
+
+DB_TESTING_HOST=127.0.0.1
+DB_TESTING_PORT=3306
+DB_TESTING_DATABASE= your database name for testing
+DB_TESTING_USERNAME= your username
+DB_TESTING_PASSWORD= your password
 ```
 
 ## 6.Generate App Key
@@ -50,7 +56,13 @@ php artisan key:generate
 ```
 php artisan migrate:fresh --seed
 ```
-## 7.Run project
+## 8.Run project
 ```
 php artisan serve
 ```
+# วิธีการ Run Testing (ทุกครั้งที่ Test จะต้อง Seed Data ใหม่ทุกครั้ง)
+```
+php artisan migrate:fresh --seed --database= database name for testing
+php artisan test --testsuite=Feature หรือ Unit
+```
+
