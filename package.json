@@ -1,14 +1,14 @@
 {
     "private": true,
     "scripts": {
+        "start": "node index.js",
         "dev": "npm run development",
         "development": "mix",
         "watch": "mix watch",
         "watch-poll": "mix watch -- --watch-options-poll=1000",
         "hot": "mix watch --hot",
         "prod": "npm run production",
-        "production": "mix --production",
-        "start": "node index.js"
+        "production": "mix --production"
     },
     "devDependencies": {
         "axios": "^0.21",
