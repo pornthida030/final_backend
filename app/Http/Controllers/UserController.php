@@ -28,9 +28,7 @@ class UserController extends Controller
     public function getMe(Request $request)
     {
         $token = $request->header('Authorization');
-
         $credentials = JWT::decode($token, env('JWT_SECRET'), ['HS256']);
-
         $user = User::find($credentials->sub); // sub เนื้อหา token จะให้มันเป็น user id เพื่อที่จะได้รู้ว่า token นี้เป็นของใคร
     
         $user['user_coupon'] = $user->user_coupons;
@@ -244,10 +242,10 @@ class UserController extends Controller
     protected function jwt($user)
     {
         $payload = [
-            'iss' => "gowasabi-jwt", // Issuer of the token
-            'sub' => $user->id, // Subject of the token
-            'iat' => time(), // Time when JWT was issued.
-            'exp' => time() + env('JWT_EXPIRE_HOUR') * 60 * 60, // Expiration time
+            'iss' => "gowasabi-jwt", // หัวข้อการสร้าง token
+            'sub' => $user->id, // หัวข้อของ token
+            'iat' => time(), // เวลาที่ token ถูกสร้าง
+            'exp' => time() + env('JWT_EXPIRE_HOUR') * 60 * 60, // Expiration time ของ token
         ];
         return JWT::encode($payload, env('JWT_SECRET'));
     }

@@ -37,6 +37,8 @@ cp .env.example .env
 
 ## 5. Edit .env file
 ```
+APP_URL=http://localhost:8000
+
 JWT_SECRET= your secret key
 JWT_EXPIRE_HOUR= token key expire time
 
