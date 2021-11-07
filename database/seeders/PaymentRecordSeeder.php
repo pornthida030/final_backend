@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\models\PaymentRecord;
+use App\Models\PaymentRecord;
 
 class PaymentRecordSeeder extends Seeder
 {
