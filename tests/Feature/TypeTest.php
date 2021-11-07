@@ -32,7 +32,7 @@ class TypeTest extends TestCase
 
     public function test_addType()
     {
-        $file = new UploadedFile(resource_path('test_image\icon-botox.png'), 'icon-botox.png');
+        $file = new UploadedFile(resource_path('test_image/icon-botox.png'), 'icon-botox.png');
         $response = $this->loginAs(1)->post(
             '/api/type/',
             [
