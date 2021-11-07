@@ -56,6 +56,10 @@ jobs:
         run: |
           php -r "file_exists('.env') || copy('.env.example', '.env');"
           php artisan key:generate
+      - name: Clear Config
+        run: php artisan config:clear
+      - name: Run Migration
+        run: php artisan migrate:fresh --seed
         env:
           DB_HOST: 127.0.0.1
           DB_DATABASE: laravel
@@ -67,10 +71,6 @@ jobs:
           CACHE_DRIVER: redis
           QUEUE_CONNECTION: redis
           SESSION_DRIVER: redis
-      - name: Clear Config
-        run: php artisan config:clear
-      - name: Run Migration
-        run: php artisan migrate:fresh --seed
       - name: Test with phpunit
         run: vendor/bin/phpunit --coverage-text
 
