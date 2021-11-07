@@ -5,14 +5,6 @@ jobs:
   laravel:
     name: Laravel (PHP ${{ matrix.php-versions }})
     runs-on: ubuntu-latest
-    env:
-      DB_DATABASE: laravel
-      DB_USERNAME: root
-      DB_PASSWORD: password
-      BROADCAST_DRIVER: log
-      CACHE_DRIVER: redis
-      QUEUE_CONNECTION: redis
-      SESSION_DRIVER: redis    
     services:
       mysql:
         image: mysql:5.7
@@ -60,6 +52,14 @@ jobs:
         run: |
           php -r "file_exists('.env') || copy('.env.example', '.env');"
           php artisan key:generate
+        env: 
+          DB_DATABASE: laravel
+          DB_USERNAME: root
+          DB_PASSWORD: password
+          BROADCAST_DRIVER: log
+          CACHE_DRIVER: redis
+          QUEUE_CONNECTION: redis
+          SESSION_DRIVER: redis
       - name: Clear Config
         run: php artisan config:clear
       - name: Run Migration
