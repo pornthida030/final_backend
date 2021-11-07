@@ -30,7 +30,7 @@ class ServiceTest extends TestCase
 
     public function test_addService()
     {
-        $file = new UploadedFile(resource_path('test_image\hair-washhair.jpg'), 'hair-washhair.jpg');
+        $file = new UploadedFile(resource_path('test_image/hair-washhair.jpg'), 'hair-washhair.jpg');
         $response = $this->loginAs(1)->post(
             '/api/service/',
             [
