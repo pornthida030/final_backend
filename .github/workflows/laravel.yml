@@ -60,6 +60,7 @@ jobs:
           CACHE_DRIVER: redis
           QUEUE_CONNECTION: redis
           SESSION_DRIVER: redis
+          DB_HOST: 127.0.0.1
       - name: Clear Config
         run: php artisan config:clear
       - name: Run Migration
