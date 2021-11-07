@@ -61,7 +61,7 @@ jobs:
           DB_USERNAME: root
           DB_PASSWORD: password
           DB_PORT: ${{ job.services.mysql.ports[3306] }}
-          REDIS_PORT: 66379
+          REDIS_PORT: 6379
           BROADCAST_DRIVER: log
           CACHE_DRIVER: redis
           QUEUE_CONNECTION: redis
