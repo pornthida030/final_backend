@@ -52,7 +52,9 @@ jobs:
         run: |
           php -r "file_exists('.env') || copy('.env.example', '.env');"
           php artisan key:generate
-        env: 
+        env:
+          DB_CONNECTION: mysql
+          DB_HOST: 127.0.0.1
           DB_DATABASE: laravel
           DB_USERNAME: root
           DB_PASSWORD: password
@@ -60,7 +62,6 @@ jobs:
           CACHE_DRIVER: redis
           QUEUE_CONNECTION: redis
           SESSION_DRIVER: redis
-          DB_HOST: 127.0.0.1
       - name: Clear Config
         run: php artisan config:clear
       - name: Run Migration
