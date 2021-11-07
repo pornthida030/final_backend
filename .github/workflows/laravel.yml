@@ -30,7 +30,7 @@ jobs:
         run: |
           mysql --version
           sudo apt-get install -y mysql-client
-          mysql --host 127.0.0.1 --port ${{ job.services.mysql.ports['3306'] }} -u root -p password -e "SHOW DATABASES"
+          mysql --host 127.0.0.1 --port 33306 -u root -p password -e "SHOW DATABASES"
       - name: Setup PHP, with composer and extensions
         uses: shivammathur/setup-php@v2 #https://github.com/shivammathur/setup-php
         with:
@@ -60,7 +60,7 @@ jobs:
           DB_DATABASE: laravel
           DB_USERNAME: root
           DB_PASSWORD: password
-          DB_PORT: ${{ job.services.mysql.ports[3306] }}
+          DB_PORT: 33306
           REDIS_PORT: 6379
           BROADCAST_DRIVER: log
           CACHE_DRIVER: redis
