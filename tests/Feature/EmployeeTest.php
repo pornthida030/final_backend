@@ -8,8 +8,9 @@ use Tests\TestCase;
 
 use Firebase\JWT\JWT;
 
-class UserCouponTest extends TestCase
+class EmployeeTest extends TestCase
 {
+
     use WithFaker;
 
     public function loginAs($id)
@@ -26,11 +27,23 @@ class UserCouponTest extends TestCase
 
         return $this;
     }
-    
-    public function test_changeStatusUserCoupon()
+
+    public function test_addEmployeeToType()
     {
-        $response = $this->loginAs(1)->put('/api/user_coupon/1');
+        $response = $this->loginAs(1)->post(
+            '/api/employee/',
+            [
+             'type_id' => 1, 'username' => 'employee1'   
+            ]
+        );
+        $response->assertStatus(200);
+    }
+
+    public function test_removeEmployeeFromType()
+    {
+        $response = $this->loginAs(1)->delete('/api/employee/8');
 
         $response->assertStatus(200);
     }
+
 }
