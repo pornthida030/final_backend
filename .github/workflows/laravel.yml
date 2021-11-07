@@ -58,6 +58,8 @@ jobs:
           DB_DATABASE: laravel
           DB_USERNAME: root
           DB_PASSWORD: password
+          DB_PORT: 3306
+          REDIS_PORT: 6379
           BROADCAST_DRIVER: log
           CACHE_DRIVER: redis
           QUEUE_CONNECTION: redis
@@ -66,12 +68,6 @@ jobs:
         run: php artisan config:clear
       - name: Run Migration
         run: php artisan migrate:fresh --seed
-        env:
-          DB_PORT: ${{ job.services.mysql.ports['3306'] }}
-          REDIS_PORT: ${{ job.services.redis.ports['6379'] }}
       - name: Test with phpunit
         run: vendor/bin/phpunit --coverage-text
-        env:
-          DB_PORT: ${{ job.services.mysql.ports['3306'] }}
-          REDIS_PORT: ${{ job.services.redis.ports['6379'] }}
 
