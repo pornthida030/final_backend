@@ -50,10 +50,4 @@ class ServiceTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_deleteService()
-    {
-        $response = $this->loginAs(1)->delete('/api/service/3');
-
-        $response->assertStatus(200);
-    }
 }

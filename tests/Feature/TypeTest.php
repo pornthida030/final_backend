@@ -52,10 +52,4 @@ class TypeTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_deleteType()
-    {
-        $response = $this->loginAs(1)->delete('/api/type/3');
-
-        $response->assertStatus(200);
-    }
 }
